@@ -1,0 +1,13 @@
+\newcommand{\nt}[1]{#1}
+\newcommand{\term}[1]{#1}
+\newcommand{\x}[1]{#1}
+
+\tikzset{
+    invisible/.style={opacity=0},
+    visible on/.style={alt=#1{}{invisible}},
+    defocus on/.style={alt=#1{color=lightgray}{color=black}},
+    focus on/.style={alt=#1{color=black}{color=lightgray}},
+    alt/.code args={<#1>#2#3}{%
+        \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+}

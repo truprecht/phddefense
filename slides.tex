@@ -1,0 +1,114 @@
+\documentclass{beamer}
+
+\usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib}
+\usetikzlibrary{positioning, matrix}
+\input{figureconf}
+
+
+\beamertemplatenavigationsymbolsempty
+\defbeamertemplate{footline}{centered frame number}
+{%
+    \hspace*{\fill}%
+    \usebeamercolor[fg]{frame number in head/foot}%
+    \usebeamerfont{frame number in head/foot}%
+    \insertframenumber\,/\,\inserttotalframenumber%
+    \hspace*{\fill}\vskip2pt%
+}
+\setbeamertemplate{footline}[center frame number]
+
+\title{Supertagging-based Parsing\\for Discontinuous Constituency Trees}
+\subtitle{Status talk}
+\newcommand{\theemails}{%
+    \href{thomas.ruprecht@tu-dresden.de}{thomas.ruprecht@tu-dresden.de}%
+}
+\author{\texorpdfstring{Thomas Ruprecht\\{\small \theemails}}{Thomas Ruprecht}}
+\institute{Institute for Theoretical Computer Science\\Faculty of Computer Science\\Technische Universität Dresden, Germany}
+\date{Mai 9, 2023}
+
+\begin{document}
+    \maketitle
+
+    \begin{frame}{Discontinuous Constituency Trees}
+        \subfile{figures/01-ctree}
+
+        \begin{itemize}
+            \item constituent tree/parse tree
+            \item constituent (symbol)
+            \item part-of-speech tags/preterminals
+            \item yield/span
+            \item discontinuency = non-contiguous yield
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Grammars for Discontinuous Constituency Parsing -- LCFRS}
+        \subfile{figures/01-ctree}
+
+        \subfile{figures/02-derivation}
+
+        \begin{itemize}
+            \item rules: nonterminals (left-/right-hand side) + string tuple composition function
+            \item constituent tree → rule derivation
+                \begin{itemize}
+                    \item rule for each inner node
+                    \item constituent symbols → nonterminals
+                \end{itemize}
+            \item treebank → weighted grammar (cost for each rule) \cite{}
+            \item but: parsing is tedious (slow and inaccurate by today's standards) \cite{}
+            \item complexity dominated by the size of extracted grammars \cite{}
+        \end{itemize}
+
+        examples for parsing with grammars vs. sota approaches
+        \begin{tabular}{lccc}
+            \toprule
+            \midrule
+            Gebhard\\
+            van Cranenbourgh\\
+            \midrule
+            Corro\\
+            Coavoux\\
+            FG-GR\\
+            \bottomrule
+        \end{tabular}
+    \end{frame}
+
+    \begin{frame}{Supertagging -- Guessing a Small Grammar}
+        -- ablaufdiagramm --
+        \begin{itemize}
+            \item prediction model -- sentence to supertags
+            \item parsing
+            \item derivation to constituent tree
+            \item offene Fragen:
+            \begin{itemize}
+                \item woher kommen die blueprints?
+                \item woher kommt das prediction model?
+                \item wie wird der constituent tree aus der lexikalen derivation abgelesen?
+            \end{itemize}
+            \item 1 und 3 sind eng miteinander verbunden
+            \item
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Supertag Extraction by LCFRS Rule Induction and Lexicalization}
+        -- aus naacl slides --
+        \begin{itemize}
+            \item behalte pos tags bei fuse
+            \item am ende nochmal die Supertags als komponenten (pos, swapped, regel) darstellen
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Prediction Model}
+        \begin{itemize}
+            \item nur kurz was zu Bert mit aufgesetztem Kopf
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Results}
+        -- aus naacl slides --
+    \end{frame}
+
+    \begin{frame}{Supertag Extraction via Guides}
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{frame}
+\end{document}
