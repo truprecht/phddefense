@@ -1,7 +1,7 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib}
-\usetikzlibrary{positioning, matrix}
+\usetikzlibrary{positioning, matrix, decorations, fit, decorations.pathreplacing, calc}
 \input{figureconf}
 
 
@@ -40,10 +40,8 @@
         \end{itemize}
     \end{frame}
 
-    \begin{frame}{Grammars for Discontinuous Constituency Parsing -- LCFRS}
-        \subfile{figures/01-ctree}
-
-        \subfile{figures/02-derivation}
+    \begin{frame}<1-9>{Hybrid Grammars}
+        \subfile{figures/03-lexderiv}
 
         \begin{itemize}
             \item rules: nonterminals (left-/right-hand side) + string tuple composition function

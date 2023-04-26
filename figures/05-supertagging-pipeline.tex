@@ -1,0 +1,104 @@
+\documentclass[../slides]{subfiles}
+
+
+\begin{document}
+    \begin{tikzpicture}[font=\small, node distance=1em]
+        \begin{scope}[every node/.style={anchor=west, inner sep=2pt}]
+            \matrix (term) [matrix of math nodes,nodes in empty cells] {
+                \strut \term{where}        \\
+                \strut \term{the}  \\
+                \strut \term{survey}       \\
+                \strut \term{was}\\
+                \strut \term{carried}       \\
+                \strut \term{out}      \\
+            };
+        \end{scope}
+
+        \node[right=of term] (tagger) {\rotatebox{90}{pos-tagger + supertagger}};
+        \coordinate (taggerboxn) at (term.north -| tagger);
+        \coordinate (taggerboxs) at (term.south -| tagger);
+        \node[draw, fit=(tagger) (taggerboxn) (taggerboxs)] (taggerbox) {};
+
+        \begin{scope}[every node/.style={anchor=west, inner sep=2pt, font=\scriptsize}]
+            \matrix[right=2em of taggerbox, yshift=-2cm] (pos) [matrix of math nodes] {
+                \strut \nt{DT} \\
+                \strut \nt{NN} \\
+                \strut \nt{VBZ} \\
+                \strut \nt{VBN} \\
+                \strut \nt{IN} \\
+                \strut \nt{DT} \\
+            };
+        \end{scope}
+        \node[gray, above=0pt of pos-1-1.north west, anchor=south west, inner sep=0pt] {enriched preterminals};
+
+        \draw[decorate,decoration={brace,mirror},gray] (pos-1-1.west) -- (pos-6-1.west) node[midway] (posbundle) {};
+
+        \begin{scope}[every node/.style={anchor=west, inner sep=2pt, font=\scriptsize}]
+            \matrix[right=2em of taggerbox, yshift=2cm] (stag) [matrix of math nodes] {
+                \strut \nt{NP} \to (\term{1} x_1)\,(\nt{NP^R}) \\
+                \strut \nt{NP^R} \to (\term{2}) \\
+                \strut \nt{VP} \to (x_1 \term{3} x_2)\,(\nt{VP_2}) \\
+                \strut \nt{VP_2} \to (x_1, \term{4} x_2 y_1)\,(\nt{NP_2}, \nt{{VP\texttt{|}_2}^-})  \\
+                \strut \nt{NP_2} \to (x_1, \term{5} y_1)\,(\nt{NP}, \nt{PP^+}) \\
+                \strut \nt{PP^+} \to (\term{6} x_1)\,(\nt{NP^+}) \\
+            };
+        \end{scope}
+        \node[gray, above=0pt of stag-1-1.north west, anchor=south west, inner sep=0pt] {supertags};
+
+        \draw[decorate,decoration={brace,mirror},gray] (stag-1-1.west) -- (stag-6-1.west) node[midway] (stagbundle) {};
+
+        \node[right=of stag] (parser) {\rotatebox{90}{parser \ref{step:parsing:parsing}}};
+        \coordinate (parserboxn) at (stag.north -| parser);
+        \coordinate (parserboxs) at (stag.south -| parser);
+        \node[draw, fit=(parser) (parserboxn) (parserboxs)] (parserbox) {};
+
+        \node[right=of parserbox] (derivation) {
+            \begin{tikzpicture}[level distance=5mm, font=\scriptsize]
+                \node {\(\nt{VP} \to (x_1 \term{3} x_2)\,(\nt{VP_2})\)}
+                [grow=south, below]
+                child {
+                    node {\(\nt{VP_2} \to (x_1, \term{4} x_2 y_1)\,(\nt{NP_2}, \nt{{VP\texttt{|}_2}^-}) \)}
+                    [sibling distance=30mm]
+                    [level distance=5mm]
+                    child {
+                        node {\(\nt{NP_2} \to (x_1, \term{5} y_1)\,(\nt{NP}, \nt{PP^+})\)}
+                        child[grow=-90, level distance=5mm] {
+                            node {\(\nt{NP} \to (\term{1} x_1)\,(\nt{NP^R})\)}
+                            child[grow=south, level distance=5mm] { node {\(\nt{NP^R} \to (\term{2})\)}}
+                        }
+                        child[grow=-12, level distance=23mm] {
+                            node {\(\nt{PP^+} \to (\term{6} x_1)\,(\nt{NP^+})\)}
+                            child[grow=south, level distance=5mm] { node {\(\nt{NP^+} \to (\term{7})\)}}
+                        }
+                    }
+                    child { node {\(\nt{{VP\texttt{|}_2}^-} \to (\term{8})\)}}};
+            \end{tikzpicture}
+        };
+
+
+        \node[below=1.5em of derivation] (trans) {};
+        \coordinate (transboxw) at (derivation.west |- trans);
+        \coordinate (transboxe) at (derivation.east |- trans);
+        \node[fit=(trans) (transboxe) (transboxw), draw] (transbox) {};
+
+        \begin{scope}[->, dashed, gray]
+            \foreach \i in {1, ..., 6} {
+                \draw (term-\i-1) -- (term-\i-1 -| taggerbox.west);
+                \draw (stag-\i-1) -- (stag-\i-1 -| parserbox.west);
+                \pgfmathsetmacro{\voff}{\i/10-0.45}
+                \draw (pos-\i-1.east) .. controls ++(2,0) and ++(-2,0) .. ($(transbox.west)-(0,\voff)$);
+            }
+            \draw (term-5-1 -| taggerbox.east) -- (posbundle.west);
+            \draw (term-2-1 -| taggerbox.east) -- (stagbundle.west);
+            \draw (parserbox.east) -- (derivation.west |- parserbox);
+            \draw (derivation) -- (transbox);
+        \end{scope}
+
+        % term-1-1 is overwritten in figures/discontinuous-parse-reordered.tex
+        \node[below=of transbox, scale=0.7] (parse) {
+            \subfile{figures/01-ctree.tex}
+        };
+        \draw[->, dashed, gray] (transbox) -- (parse);
+        \draw[->, dashed, gray] (transbox) -- (parse);
+    \end{tikzpicture}
+\end{document}

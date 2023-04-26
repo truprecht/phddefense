@@ -1,0 +1,51 @@
+\documentclass[../slides]{subfiles}
+
+
+\begin{document}
+    \begin{tikzpicture}[font=\small, node distance=1em]
+        \begin{scope}[every node/.style={anchor=west, inner sep=0pt, outer sep=0pt}]
+            \matrix (term) [matrix of math nodes,nodes in empty cells,row sep=5pt] {
+                \strut \text{where}        \\
+                \strut \text{the}  \\
+                \strut \text{survey}       \\
+                \strut \text{was}\\
+                \strut \text{carried}       \\
+                \strut \text{out}      \\
+            };
+        \end{scope}
+        \node[gray, inner sep=0pt, above=.4cm of term.north west, anchor=west] (sentence) {sentence};
+        \node[fit=(term) (sentence), inner sep=0pt] (sentencebox) {};
+
+
+        \node[right=1cm of sentencebox] (parser) {\rotatebox{90}{parser}};
+        \coordinate (parserboxn) at (sentencebox.north -| parser);
+        \coordinate (parserboxs) at (sentencebox.south -| parser);
+        \node[draw, fit=(parser) (parserboxn) (parserboxs)] (parserbox) {};
+
+        \node[right=of parserbox, scale=0.6, yshift=-4mm] (derivation) {
+            \subfile{figures/03-lexderiv.tex}};
+        \node[gray, inner sep=0pt, anchor=west] (derivlab) at (derivation.north west|-sentence) {derivation};
+
+
+        \node[right=1.5em of derivation] (trans) {\rotatebox{90}{eval.\@ dcp}};
+        \coordinate (transboxn) at (sentencebox.north -| trans);
+        \coordinate (transboxs) at (sentencebox.south -| trans);
+        \node[fit=(trans) (transboxn) (transboxs), draw] (transbox) {};
+
+        % term-1-1 is overwritten in figures/discontinuous-parse-reordered.tex
+        \node[right=of transbox, scale=0.8, yshift=-4mm] (parse) {
+            \subfile{figures/01-ctree.tex}
+        };
+        \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse.north west|-sentence) {parse tree};
+
+        \begin{scope}[->, dashed, gray, >=stealth]
+            \foreach \i in {1, ..., 6} {
+                \draw (term-\i-1) -- (term-\i-1 -| parserbox.west);
+                \pgfmathsetmacro{\voff}{\i/10-0.45}
+            }
+            \draw (parserbox.east) -- (derivation.west |- parserbox);
+            \draw (derivation.east|-transbox) -- (transbox.west);
+            \draw (transbox.east) -- (parse.west|-transbox);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}
