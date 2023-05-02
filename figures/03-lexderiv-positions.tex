@@ -3,27 +3,27 @@
 \begin{document}%
     \tikzset{
         tcomp/.style={
-            level distance=2ex,
+            level distance=2.5ex,
             font=\scriptsize,
             inner sep=.4px,
             outer sep=.5px,
-            sibling distance=1.2em,
+            sibling distance=.9em,
             baseline={(current bounding box.center)},
-            node distance=.2em,
+            node distance=.1em,
             edge from parent path={(\tikzparentnode.south) -- ++(0,-.3ex) -| (\tikzchildnode.north)},
             every path/.style={line width=.15ex},
         },
     }%
-    \newcommand{\rootclause}{\tikz[tcomp]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {PT} child {node {2}}}}};}%
-    \newcommand{\uppervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {VBD} child { node {4}}};}%
-    \newcommand{\lowervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {$y$} child { node {VBN} child { node {5}}}};}%
-    \newcommand{\whclause}{\tikz[tcomp]\node{WH} child {node{WRB} child {node {1}}};}%
-    \newcommand{\prtclause}{\tikz[tcomp]{\node(r) {$a^\downarrow$};\node[right=of r]{PRT} child {node{RP} child {node {6}}};}}%
-    \newcommand{\nnclause}{\tikz[tcomp]\node{NP} child {node {$a^\downarrow$}} child {node{NN} child {node {3}}};}%
+    \newcommand{\rootclause}{\tikz[tcomp]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {2}}}};}%
+    \newcommand{\uppervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {4}};}%
+    \newcommand{\lowervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {$y$} child { node {5}}};}%
+    \newcommand{\whclause}{\tikz[tcomp]\node{WH} child {node{1}};}%
+    \newcommand{\prtclause}{\tikz[tcomp]{\node(r) {$a^\downarrow$};\node[right=of r]{PRT} child {node{6}};}}%
+    \newcommand{\nnclause}{\tikz[tcomp]\node{NP} child {node {$a^\downarrow$}} child {node{3}};}%
     %
     \begin{tikzpicture}[anchor=center, outer sep=0px, inner sep=1pt]
         \node (root) {\(\mathit{Root} \to [x_1\,\text{2}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)\)}
-        [sibling distance=14em]
+        [sibling distance=10em]
         child { node (vp1) {\(V_2 \to [x_1, \text{4}\, x_2] \begin{bmatrix}\uppervclause{}\end{bmatrix} (V_2)\)}
             [sibling distance=6.5em]
             child{ node (vp2) {\(V_2 \to [x_1, \text{5}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (V^L, V^R)\)}

@@ -82,38 +82,38 @@
 
         \begin{scope}[every node/.style={obox, scale=0.45}]
             \node[right=1cm of extraction, fill=black!40] (rules1) {%
-                \begin{tabular}{ll}
-                    where & \(V^L \to[\text{*}][\ldots]\)\\
-                    the & \(\mathit{Root} \to [x_1\,\text{*}\,y_1\,x_2][\ldots] (V_2, N)\)\\
-                    survey& \(N \to [\text{*}] [\ldots]\)\\
-                    was& \(V_2 \to [x_1, \text{*}\, x_2] [\ldots] (V_2)\)\\
-                    carried& \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
-                    out& \(V^R \to [\text{*}][\ldots]\)
+                \begin{tabular}{lll}
+                    where & WH & \(V^L \to[\text{*}][\ldots]\)\\
+                    the & DT & \(\mathit{Root} \to [x_1\,\text{*}\,y_1\,x_2][\ldots] (V_2, N)\)\\
+                    survey&  NN & \(N \to [\text{*}] [\ldots]\)\\
+                    was &VBD & \(V_2 \to [x_1, \text{*}\, x_2] [\ldots] (V_2)\)\\
+                    carried &VBN& \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
+                    out&PRT& \(V^R \to [\text{*}][\ldots]\)
                 \end{tabular}%
             };
             \node[below right=.3cm of rules1.north west, anchor=north west, fill=black!20] (rules2) {%
-                \begin{tabular}{ll}
-                    A & \(N^L \to[\text{*}][\ldots]\)\\
-                    hearing & \(N \to [x_1\,\text{*}][\ldots] (N^L)\)\\
-                    is & \(\mathit{Root} \to [x_1 \text{*} x_2] [\ldots] (V_2)\)\\
-                    scheduled & \(V_2 \to [x_1, \text{*}\, x_2] [\ldots] (V_2)\)\\
-                    on & \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
-                    the & \(V^R \to [\text{*}][\ldots]\) \\
-                    issue & \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
-                    today & \(V^R \to [\text{*}][\ldots]\)
+                \begin{tabular}{lll}
+                    A &DT& \(N^L \to[\text{*}][\ldots]\)\\
+                    hearing &NN & \(N \to [x_1\,\text{*}][\ldots] (N^L)\)\\
+                    is &VBZ& \(\mathit{Root} \to [x_1 \text{*} x_2] [\ldots] (V_2)\)\\
+                    scheduled &VBN & \(V_2 \to [x_1, \text{*}\, x_2] [\ldots] (V_2)\)\\
+                    on &IN& \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
+                    the &DT& \(V^R \to [\text{*}][\ldots]\) \\
+                    issue &NN& \(V_2 \to [x_1, \text{*}\, y_1] [\ldots](V^L, V^R)\)\\
+                    today &NN& \(V^R \to [\text{*}][\ldots]\)
                 \end{tabular}%
             };
             \node[below right=.3cm of rules2.south east, anchor=south east, fill=black!2] (rules3) {%
-                \begin{tabular}{ll}
-                    What& \(V^L \to[\text{*}] [\ldots]\)\\
-                    should& \(S \to [x_1\,\text{*}\,y_1\,x_2][\ldots](V^L, S^R)\)\\
-                    I& \(S^R \to [\text{*}][\ldots]\)\\
-                    do& \(V_2 \to [x_1\,\text{*}][\ldots] (V^L)\)\\
-                    ?& \(\mathit{Root} \to [x_1\,\text{*}][\ldots] (S)\)
+                \begin{tabular}{lll}
+                    What &WP& \(V^L \to[\text{*}] [\ldots]\)\\
+                    should &MD& \(S \to [x_1\,\text{*}\,y_1\,x_2][\ldots](V^L, S^R)\)\\
+                    I &PRP& \(S^R \to [\text{*}][\ldots]\)\\
+                    do &VB& \(V_2 \to [x_1\,\text{*}][\ldots] (V^L)\)\\
+                    ? &\$.& \(\mathit{Root} \to [x_1\,\text{*}][\ldots] (S)\)
                 \end{tabular}%
             };
         \end{scope}
-        \node[olabel, anchor=west] (ruleslab) at (rules1.west |- treebanklab) {tokens + blueprints\strut};
+        \node[olabel, anchor=west] (ruleslab) at (rules1.west |- treebanklab) {tokens+pos+blueprints\strut};
         \node[fit=(ruleslab) (rules1) (rules3), boundingbox] (rules) {};
 
         \node[right=1cm of rules] (mle) {\rotatebox{90}{training}};
@@ -122,8 +122,13 @@
         \node[process, fit=(mle) (mleboxn) (mleboxs), outer sep=0pt] (mlebox) {};
 
 %        \coordinate[right=1cm of mle] (grammaranchor);
-        \node[olabel, anchor=north west, align=left, xshift=.9cm] (grammarlab) at (mle.east |- treebanklab.north) {prediction model\strut\\tokens $\to$ blueprints\strut};
-        \node[below=.4cm of grammarlab, fill=black, obox, rounded corners=2pt] (grammar1) {\textcolor{lightgray}{S}};
+        \node[olabel, anchor=north west, align=left, xshift=.9cm] (grammarlab) at (mle.east |- treebanklab.north) {prediction models\strut};
+        \node[olabel, font=\tiny, anchor=west, yshift=-.5cm] (stagmodel) at (grammarlab.west) {tokens $\to$ blueprints};
+        \node[olabel, font=\tiny, anchor=east, yshift=-1.5cm] (posmodel) at (grammarlab.east) {tokens $\to$ pos symbols};
+
+
+        \node[below=.1cm of stagmodel, fill=black, obox, rounded corners=2pt] (grammar1) {\textcolor{lightgray}{S}};
+        \node[below=.1cm of posmodel, fill=black, obox, rounded corners=2pt] (grammar2) {\textcolor{lightgray}{P}};
 %        \node[fit=(grammarlab) (grammar1), boundingbox] (grammar) {};
 
 
@@ -141,6 +146,7 @@
             \draw (rules3) -- (mlebox.west|-rules3);
 
             \draw (mlebox.east|-grammar1) -- (grammar1.west);
+            \draw (mlebox.east|-grammar2) -- (grammar2.west);
         \end{scope}
     \end{tikzpicture}
 \end{document}

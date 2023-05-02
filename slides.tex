@@ -1,7 +1,7 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169, 10pt]{beamer}
 
 \usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib}
-\usetikzlibrary{positioning, matrix, decorations, fit, decorations.pathreplacing, calc}
+\usetikzlibrary{positioning, matrix, decorations, fit, decorations.pathreplacing, calc, backgrounds}
 \input{figureconf}
 
 
@@ -28,32 +28,82 @@
 \begin{document}
     \maketitle
 
-    \begin{frame}{Discontinuous Constituency Trees}
-        \subfile{figures/01-ctree}
-
-        \begin{itemize}
-            \item constituent tree/parse tree
-            \item constituent (symbol)
-            \item part-of-speech tags/preterminals
-            \item yield/span
-            \item discontinuency = non-contiguous yield
-        \end{itemize}
+    \begin{frame}{Outline}
+        \tableofcontents
     \end{frame}
 
-    \begin{frame}<1-9>{Hybrid Grammars}
-        \subfile{figures/03-lexderiv}
+    \section{Introdcution}
+    \begin{frame}{(Discontinuous) Constituency Trees}
+        \begin{minipage}{.4\linewidth}
+            \resizebox{\linewidth}{!}{
+                \subfile{figures/01-ctree-annotations}}
+        \end{minipage}
+        \begin{minipage}{.58\linewidth}
+            \begin{itemize}
+                \item<+-> syntactic structure of natural language
+                \begin{itemize}
+                    \item<+-> lowest level: sentence
+                    \item<+-> 2\(^\text{nd}\) lowest: part-of-speech tags
+                    \item<+-> remainder: constituent symbols
+                \end{itemize}
+                \item<+-> discontinuity = non consecutive regions
+                {\scriptsize\centering\begin{tabular}{llcc}
+                    \toprule
+                    corpus & language & disc.\@ sent.\@ & disc.\@ nodes \\
+                    \midrule
+                    Alpino & nl       &                 &               \\
+                    DPTB   & eng      &                 &               \\
+                    NeGra  & ger      &                 &               \\
+                    Tiger  & ger      &                 &               \\
+                    \bottomrule
+                \end{tabular}}
+                \item<+-> parsing = prediction of structure for sentence
+                \item<+-> improves nat.\@ lang.\@ understanding and generation
+            \end{itemize}
+        \end{minipage}
+    \end{frame}
 
-        \begin{itemize}
-            \item rules: nonterminals (left-/right-hand side) + string tuple composition function
-            \item constituent tree → rule derivation
+    \begin{frame}<1-9>{Hybrid Grammars \cite{VogDre,Geb,Geb}}
+        \begin{minipage}{.58\linewidth}
+            \begin{overprint}
+                \onslide<-6>
+                    \resizebox{\linewidth}{!}{
+                        \subfile{figures/03-lexderiv-overlays}}
+                \onslide<7->
+                    \resizebox{\linewidth}{!}{
+                        \subfile{figures/06-grammar-training-pipeline}}\\
+                    \resizebox{\linewidth}{!}{
+                        \subfile{figures/04-grammar-pipeline}}
+            \end{overprint}
+        \end{minipage}
+        \begin{minipage}{.4\linewidth}
+            \begin{itemize}
+                \item rule
+                    \begin{itemize}
+                        \item nonterminals
+                        \item compositions
+                            \begin{itemize}
+                                \item[(a)] over string tuples
+                                \item[(b)] over (consecutive) tree sequences
+                            \end{itemize}
+                        \item alignment
+                    \end{itemize}
+                \item parsing:
+                \begin{itemize}
+                    \item find derivation via (a)
+                    \item comp.\@ constituent tree via (b)
+                \end{itemize}
+
+                \item constituent tree → rule derivation
                 \begin{itemize}
                     \item rule for each inner node
                     \item constituent symbols → nonterminals
                 \end{itemize}
-            \item treebank → weighted grammar (cost for each rule) \cite{}
-            \item but: parsing is tedious (slow and inaccurate by today's standards) \cite{}
-            \item complexity dominated by the size of extracted grammars \cite{}
-        \end{itemize}
+                \item treebank → weighted grammar (cost for each rule) \cite{}
+                \item but: parsing is tedious (slow and inaccurate by today's standards) \cite{}
+                \item complexity dominated by the size of extracted grammars \cite{}
+            \end{itemize}
+        \end{minipage}
 
         examples for parsing with grammars vs. sota approaches
         \begin{tabular}{lccc}
@@ -68,6 +118,7 @@
             \bottomrule
         \end{tabular}
     \end{frame}
+
 
     \begin{frame}{Supertagging -- Guessing a Small Grammar}
         -- ablaufdiagramm --
@@ -86,6 +137,8 @@
         \end{itemize}
     \end{frame}
 
+
+    \section{Lexicalized Rule extraction}
     \begin{frame}{Supertag Extraction by LCFRS Rule Induction and Lexicalization}
         -- aus naacl slides --
         \begin{itemize}
@@ -94,19 +147,32 @@
         \end{itemize}
     \end{frame}
 
+
+    \section{Supertag Prediction and Parsing}
     \begin{frame}{Prediction Model}
         \begin{itemize}
             \item nur kurz was zu Bert mit aufgesetztem Kopf
         \end{itemize}
     \end{frame}
 
+
+    \section{Experimental Evaluation and Results}
     \begin{frame}{Results}
         -- aus naacl slides --
     \end{frame}
 
-    \begin{frame}{Supertag Extraction via Guides}
+
+    \section{Publications}
+    \begin{frame}{Publications}
         \begin{itemize}
-            \item
+            \item asdf
         \end{itemize}
+    \end{frame}
+
+
+    \section*{References}
+     \begin{frame}[fragile,noframenumbering,plain]{References}
+        \bibliography{references}
+        \bibliographystyle{acl_natbib}
     \end{frame}
 \end{document}

@@ -37,7 +37,10 @@
                     \staglist[1.7cm]{$V^R \xrightarrow{0.7} [\text{6}][\ldots]$}\\
                 };
         \end{scope}
-        \node[gray, anchor=west, inner sep=0pt] at (stag.west|-sentence) {supertags w/ confidence};
+        \node[gray, anchor=west, inner sep=0pt] at (stag.west|-sentence) {supertags + confidence};
+
+
+        \node[below=.3cm of taggerbox] (postagger) {\rotatebox{90}{pos tagger}};
 
 
         \node[right=.7cm of stag] (parser) {\rotatebox{90}{parser}};
