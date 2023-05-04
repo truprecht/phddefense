@@ -1,0 +1,33 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \input{derivs/00-survey-lexderiv-commands.tex}
+    \begin{tikzpicture}[remember picture]
+        \node[scale=0.8] (ctree) {\subfile{ctrees/01-survey.tex}};
+
+        \visible<2->{
+            \node[scale=0.8, below=of ctree.south east, anchor=north] (bintree) {\subfile{ctrees/04-survey-binarized.tex}};
+        }
+
+        \visible<4->{
+            \node[scale=0.8, right=of ctree] (guidetree) {
+                \subfile{ctrees/05-survey-guided.tex}};
+        }
+
+        \node[right=of bintree, font=\scriptsize] (rulelist) {\begin{tabular}{lll}
+               \visible<6->{where &  \tiny WH+WRB & $\text{arg}(V) \to [1][1]$} \\[2mm]
+               \visible<7->{the & PT & $S \to [\visible<8->{x_1}\,2\,\visible<9->{y_1}\,\visible<8->{x_2}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {2}}}};\end{bmatrix} (V, N)$} \\[2mm]
+               \visible<10->{survey &  NN & $N \to [3] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node[visible on=<11->, alarm on=<11>] {$a$}} child {node {3}}; \end{bmatrix}$} \\[2mm]
+               \visible<12->{was &  VBD & $V \to [x_1\,4\,x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {4}}; \end{bmatrix} (V)$} \\[2mm]
+               \visible<13->{carried &  VBN & $V \to [x_1\,5\,y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {5}}}; \end{bmatrix} (\text{arg}(V), V^B)$} \\[2mm]
+               \visible<14->{out &  \tiny PRT+RP & $V^B \to [6] [a \, 6] (V)$}
+        \end{tabular}};
+
+
+        \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth]
+            \draw[visible on=<2->] (ctree.-100) edge[bend right, ->] node[left] {binarization:\\$\bullet$\,type (l2r, ho, r2l)\\$\bullet$\,markovzation } (bintree.west);
+            \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right] {add guide values\\$\bullet$\,guide constructor} (guidetree);
+            \draw[visible on=<6->] (guidetree) edge[->] node[above right] {rule extraction\\$\bullet$\,nonterminal constructor} (rulelist);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

@@ -1,0 +1,14 @@
+\documentclass[../../slides]{subfiles}
+
+
+\begin{document}
+    \begin{tikzpicture}[font=\small, node distance=1em, remember picture]
+        \node[olabel] (treebanklab) {treebank\strut};
+        \begin{scope}[every node/.style={scale=0.4, obox}]
+            \node[below=.3cm of treebanklab.west, anchor=north west, fill=black!40] (ctree1) {\subfile{../ctrees/01-survey.tex}};
+            \node[below right=.3cm of ctree1.north west, anchor=north west, fill=black!20] (ctree2) {\subfile{../ctrees/02-hearing.tex}};
+            \node[below right=.3cm of ctree2.south east, anchor=south east, fill=black!2] (ctree3) {\subfile{../ctrees/03-what.tex}};
+        \end{scope}
+        \node[fit=(treebanklab) (ctree1) (ctree3), boundingbox] (treebank) {};
+    \end{tikzpicture}
+\end{document}

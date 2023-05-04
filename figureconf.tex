@@ -7,7 +7,26 @@
     visible on/.style={alt=#1{}{invisible}},
     defocus on/.style={alt=#1{color=lightgray}{color=black}},
     focus on/.style={alt=#1{color=black}{color=lightgray}},
+    alarm on/.style={alt=#1{color=red}{color=black}},
     alt/.code args={<#1>#2#3}{%
         \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
     },
+}
+
+\tikzset{
+    cross/.style={
+        cross out,
+        minimum size=2*(#1-\pgflinewidth),
+        inner sep=0pt,
+        outer sep=0pt
+    },
+    cross/.default={1pt}
+}
+
+
+\tikzset{
+    process/.style={draw, rectangle, inner xsep=3pt, inner ysep=0pt},
+    boundingbox/.style={inner sep=0pt, outer sep=0pt},
+    olabel/.style={gray, inner sep=0pt},
+    obox/.style={draw, rectangle, rounded corners, line width=.3mm, align=left}
 }

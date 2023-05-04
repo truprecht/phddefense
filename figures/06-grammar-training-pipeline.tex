@@ -2,62 +2,6 @@
 
 
 \begin{document}
-    \newcommand{\ctreeone}{\subfile{01-ctree.tex}}
-    \newcommand{\ctreetwo}{%
-        \begin{tikzpicture}[
-            edge from parent path={(\tikzparentnode.south) -- ++(0,-1mm) -| (\tikzchildnode.north)},
-            level distance=7mm,
-            font=\small,
-            sibling distance=10mm,
-            anchor=center,
-            every path/.style={line width=.2ex},
-            every node/.style={text height=2.5mm},
-            rounded corners=0
-            ]
-            \matrix (pos) [matrix of nodes, outer sep=0pt, inner sep=0pt, row sep=0pt, column sep=7pt, ampersand replacement=\&] {
-                \strut A \& \strut hearing \& \strut is  \& \strut scheduled \& \strut on \& \strut the \& \strut issue \& \strut today \\};
-
-            \node[above=35mm of pos, xshift=-5mm] {\nt{VP}}
-            child { node[above=1mm of pos-1-3] {\nt{VBZ}}}
-            child { node {\nt{VP}}
-                child { node[above=1mm of pos-1-4] {\nt{VBN}}}
-                child { node (np1) {\nt{NP}}
-                    child { node[xshift=-2.7cm] (np2) {\nt{NP}}
-                        [sibling distance=8mm]
-                        child { node[above=1mm of pos-1-1] {\nt{DT}}}
-                        child { node[above=1mm of pos-1-2] {\nt{NN}}}}
-                    child { node (pp) {\nt{PP}}
-                        child { node[above=1mm of pos-1-5] {\nt{IN}}}
-                        child { node {\nt{NP}}
-                            [sibling distance=7mm]
-                            child { node[above=1mm of pos-1-6] {\nt{DT}}}
-                            child { node[above=1mm of pos-1-7] {\nt{NN}}}}}}
-                child { node[xshift=1.3cm] {\nt{NP}}
-                    child { node[above=1mm of pos-1-8] {\nt{NN}}}}};
-    \end{tikzpicture}}
-    \newcommand{\ctreethree}{%
-        \begin{tikzpicture}[
-            font=\small,
-            level distance=2.5em,
-            edge from parent path={(\tikzparentnode.south) -- ++(0,-1mm) -| (\tikzchildnode.north)},
-            anchor=center,
-            every path/.style={line width=.2ex},
-            every node/.style={text height=2.5mm},
-            rounded corners=0
-            ]
-            \matrix (pos) [matrix of nodes, outer sep=0pt, inner sep=0pt, row sep=0pt, column sep=7pt, ampersand replacement=\&] {
-                \strut What \& \strut should \& \strut I  \& \strut do \& \strut ? \\};
-            \node[above=7.5em of pos, xshift=2em] {SBAR}
-            child {node (SQ) {SQ}
-                [sibling distance=2.5em]
-                child { node (VP) {VP}
-                    child { node[above=1mm of pos-1-1] (WP) {WP}}
-                    child  { node[above=1mm of pos-1-4] (VB) {VB}} }
-                child { node[above=1mm of pos-1-2]  (MD){MD}}
-                child { node[above=1mm of pos-1-3]  (PRP) {PRP}}}
-            child { node[above=1mm of pos-1-5] {\$.}};
-    \end{tikzpicture}}
-
     \tikzset{
         process/.style={draw, rectangle, inner sep=7px},
         boundingbox/.style={inner sep=0pt, outer sep=0pt},
@@ -70,9 +14,9 @@
 
     \node[olabel] (treebanklab) {treebank\strut};
     \begin{scope}[every node/.style={scale=0.3, obox}]
-        \node[below=.3cm of treebanklab.west, anchor=north west, fill=black!40] (ctree1) {\ctreeone};
-        \node[below right=-1.5cm of ctree1, fill=black!20] (ctree2) {\ctreetwo};
-        \node[below right=-1.5cm of ctree2, fill=black!2] (ctree3) {\ctreethree};
+        \node[below=.3cm of treebanklab.west, anchor=north west, fill=black!40] (ctree1) {\subfile{ctrees/01-survey.tex}};
+        \node[below right=-1.5cm of ctree1, fill=black!20] (ctree2) {\subfile{ctrees/02-hearing.tex}};
+        \node[below right=-1.5cm of ctree2, fill=black!2] (ctree3) {\subfile{ctrees/03-what.tex}};
     \end{scope}
     \node[fit=(treebanklab) (ctree1) (ctree3), boundingbox] (treebank) {};
 

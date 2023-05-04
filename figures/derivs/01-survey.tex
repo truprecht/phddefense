@@ -1,0 +1,19 @@
+\documentclass[../../slides]{subfiles}
+
+\begin{document}
+    \input{00-survey-lexderiv-commands.tex}
+%
+    \begin{tikzpicture}[anchor=center, outer sep=0px, inner sep=1pt]
+        \node (root) {\(\mathit{Root} \to [x_1\,\text{the}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)\)}
+            [sibling distance=7em]
+            child { node (vp1) {\(V_2 \to [x_1, \text{was}\, x_2] \begin{bmatrix}\uppervclause{}\end{bmatrix} (V_2)\)}
+                [sibling distance=6.5em]
+                child{ node[yshift=-3ex] (vp2) {\(V_2 \to [x_1, \text{carried}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (V^L, V^R)\)}
+                    child { node (term0) {\(V^L \to[\text{where}] \begin{bmatrix}\whclause{}\end{bmatrix}\)}}
+                    child { node[xshift=3em] (term5) {\(V^R \to [\text{out}] \begin{bmatrix}\prtclause{}\end{bmatrix}\)}}}}
+            child { node[yshift=-6ex] (np) {\(N \to [\text{survey}] \begin{bmatrix}\nnclause{}\end{bmatrix}\)}
+                edge from parent[draw=none]};
+
+            \draw (root.-45) -- (np.60);
+    \end{tikzpicture}
+\end{document}

@@ -1,7 +1,7 @@
 \documentclass[aspectratio=169, 10pt]{beamer}
 
-\usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib}
-\usetikzlibrary{positioning, matrix, decorations, fit, decorations.pathreplacing, calc, backgrounds}
+\usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib, varwidth}
+\usetikzlibrary{positioning, matrix, fit, decorations, shapes, shapes.misc, decorations.pathreplacing, calc, backgrounds}
 \input{figureconf}
 
 
@@ -65,16 +65,8 @@
 
     \begin{frame}<1-9>{Hybrid Grammars \cite{VogDre,Geb,Geb}}
         \begin{minipage}{.58\linewidth}
-            \begin{overprint}
-                \onslide<-6>
-                    \resizebox{\linewidth}{!}{
-                        \subfile{figures/03-lexderiv-overlays}}
-                \onslide<7->
-                    \resizebox{\linewidth}{!}{
-                        \subfile{figures/06-grammar-training-pipeline}}\\
-                    \resizebox{\linewidth}{!}{
-                        \subfile{figures/04-grammar-pipeline}}
-            \end{overprint}
+            \resizebox{\linewidth}{!}{
+                \subfile{figures/03-lexderiv-overlays}}
         \end{minipage}
         \begin{minipage}{.4\linewidth}
             \begin{itemize}
@@ -119,39 +111,44 @@
         \end{tabular}
     \end{frame}
 
+    \begin{frame}<1-6>{A Traditional Parsing Pipeline (I)}
+        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
+    \end{frame}
 
-    \begin{frame}{Supertagging -- Guessing a Small Grammar}
-        -- ablaufdiagramm --
-        \begin{itemize}
-            \item prediction model -- sentence to supertags
-            \item parsing
-            \item derivation to constituent tree
-            \item offene Fragen:
-            \begin{itemize}
-                \item woher kommen die blueprints?
-                \item woher kommt das prediction model?
-                \item wie wird der constituent tree aus der lexikalen derivation abgelesen?
-            \end{itemize}
-            \item 1 und 3 sind eng miteinander verbunden
-            \item
-        \end{itemize}
+    \begin{frame}{A Traditional Parsing Pipeline (II)}
+        \centering
+        \subfile{tables/01-traditional-parsers.tex}
+    \end{frame}
+
+    %% Intro to lexicalized rule extraction
+    \begin{frame}<9-14>{A Supertagging-based Parsing Pipeline}
+        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
     \end{frame}
 
 
     \section{Lexicalized Rule extraction}
-    \begin{frame}{Supertag Extraction by LCFRS Rule Induction and Lexicalization}
-        -- aus naacl slides --
-        \begin{itemize}
-            \item behalte pos tags bei fuse
-            \item am ende nochmal die Supertags als komponenten (pos, swapped, regel) darstellen
-        \end{itemize}
+    \begin{frame}{Lexicalized Rule Extraction}
+        \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
+    \end{frame}
+
+    \begin{frame}{Lexicalized Rule Extraction: Guide Constructors}
+%        \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
+    \end{frame}
+
+    \begin{frame}{Lexicalized Rule Extraction: Nonterminal Constructors}
+%        \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
     \end{frame}
 
 
-    \section{Supertag Prediction and Parsing}
-    \begin{frame}{Prediction Model}
+    %% Intro to prediction models
+    \begin{frame}<14,15>{A Supertagging-based Parsing Pipeline}
+        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
+    \end{frame}
+
+    \section{Neural Prediction Models}
+    \begin{frame}{Neural Prediction Models}
         \begin{itemize}
-            \item nur kurz was zu Bert mit aufgesetztem Kopf
+            \item
         \end{itemize}
     \end{frame}
 
@@ -171,7 +168,7 @@
 
 
     \section*{References}
-     \begin{frame}[fragile,noframenumbering,plain]{References}
+    \begin{frame}{References}
         \bibliography{references}
         \bibliographystyle{acl_natbib}
     \end{frame}

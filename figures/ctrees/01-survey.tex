@@ -1,0 +1,42 @@
+\documentclass[../../slides]{subfiles}
+
+\begin{document}
+    \begin{tikzpicture}[
+            remember picture,
+            edge from parent path={(\tikzparentnode.south) -- ++(0,-.5ex) -| (\tikzchildnode.north)},
+            every path/.style={line width=.2ex},
+            level distance=4.5ex,
+            %      node distance=3ex,
+            anchor=center,
+            every node/.style={font=\small},
+            rounded corners=0
+        ]
+        \matrix (pos) [matrix of nodes, outer sep=0pt, inner sep=0pt, row sep=0pt, column sep=7pt] {
+%            WRB   & PT  & NN      & VBD & VBN     & RP  \\
+            \strut where & \strut the & \strut survey  & \strut was & \strut carried & \strut out \\};
+        \node[above=22.5ex of pos-1-3, xshift=-2em] (sbar) {SBAR}
+        child { node (s) {S}
+            [sibling distance=2em]
+            child { node (vp1) {VP}
+                child { node (vp2) {VP}
+                    child { node[above=4.5ex of pos-1-1] (wh) {WH} child {
+                            node (term0) {WRB}
+                            edge from parent}}
+                    child {
+                        node[above=0ex of pos-1-5] (term4) {VBN}
+                        edge from parent}
+                    child { node[above=4.5ex of pos-1-6] (prt) {PRT} child {
+                            node (term5) {RP}
+                            edge from parent}}}
+                child {
+                    node[above=0ex of pos-1-4] (term3) {VBD}
+                    edge from parent }
+                edge from parent}
+            child { node[yshift=-9ex] (np) {NP}
+                child { node[above=0ex of pos-1-2] {PT} }
+                child {
+                    node[above=0ex of pos-1-3] (term2) {NN}
+                    edge from parent }}
+            edge from parent};
+    \end{tikzpicture}
+\end{document}

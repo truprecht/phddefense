@@ -1,0 +1,79 @@
+\tikzset{
+    tcomp/.style={
+        level distance=2ex,
+        font=\scriptsize,
+        inner sep=.4px,
+        outer sep=.5px,
+        sibling distance=1.2em,
+        baseline={(current bounding box.center)},
+        node distance=.2em,
+        edge from parent path={(\tikzparentnode.south) -- ++(0,-.3ex) -| (\tikzchildnode.north)},
+        every path/.style={line width=.15ex},
+    },
+    tmat/.style={
+        matrix of nodes,
+        outer sep=0pt,
+        inner sep=0pt,
+        row sep=0pt,
+        column sep=7pt,
+        ampersand replacement=\&
+    }
+}%
+%
+\newcommand{\rootclause}{%
+    \tikz[tcomp]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {PT} child {node {the}}}}};}%
+\newcommand{\uppervclause}{%
+    \tikz[tcomp]\node{VP} child {node{$x$}} child { node {VBD} child { node {was}}};}%
+\newcommand{\lowervclause}{%
+    \tikz[tcomp]\node{VP} child {node{$x$}} child { node {$y$} child { node {VBN} child { node {carried}}}};}%
+\newcommand{\whclause}{%
+    \tikz[tcomp]\node{WH} child {node{WRB} child {node {where}}};}%
+\newcommand{\prtclause}{%
+    \tikz[tcomp]{\node(r) {$a^\downarrow$};\node[right=of r]{PRT} child {node{RP} child {node {out}}};}}%
+\newcommand{\nnclause}{%
+    \tikz[tcomp]\node{NP} child {node {$a^\downarrow$}} child {node{NN} child {node {survey}}};}%
+%
+%
+\newcommand{\prteval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut \& \strut out\\};
+        \node[above=2ex of ts-1-1] {$a^\downarrow$};
+        \node[above=2ex of ts-1-2]{PRT} child {node {RP}};}}%
+\newcommand{\wheval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut where \\};
+        \node[above=2ex of ts-1-1]{WH} child {node {WRB}};}}%
+\newcommand{\lowerveval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut where \& \strut , \& \strut carried \& \strut out\\};
+        \node[above=4ex of ts] {VP}
+        child {node[above=2ex of ts-1-1]{WH} child {node {WRB}}}
+        child {node[above=.5ex of ts-1-3]{VBN}}
+        child {node[above=2ex of ts-1-4]{PRT} child {node {RP}}};}}%
+\newcommand{\upperveval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut where \& \strut , \& \strut was \& \strut carried \& \strut out\\};
+        \node[above=6ex of ts, xshift=-2em] {VP}
+        child { node[xshift=-1ex] {VP}
+            child {node[above=2ex of ts-1-1]{WH} child {node {WRB}}}
+            child {node[above=of ts-1-4]{VBN}}
+            child {node[above=2ex of ts-1-5]{PRT} child {node {RP}}}}
+        child { node[above=of ts-1-3] {VBD}};}}%
+\newcommand{\nneval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut \& \strut survey \\};
+        \node[above=2.5ex of ts-1-1]{NP} child {node {$a^\downarrow$}} child {node[above=of ts-1-2] {NN}};}}%
+\newcommand{\rooteval}{%
+    \tikz[tcomp]{
+        \matrix (ts) [tmat] {\strut where \& \strut the \& \strut survey \& \strut was \& \strut carried \& \strut out\\};
+        \node[above=10.5ex of ts, xshift=-3em] {SBAR}
+        child { node {S}
+            child {node[xshift=-1ex] {VP}
+                child { node[xshift=-1ex] {VP}
+                    child {node[above=2ex of ts-1-1]{WH} child {node[above=-.1exof ts-1-1] {WRB}}}
+                    child {node[above=-.1ex of ts-1-5]{VBN}}
+                    child {node[above=2ex of ts-1-6]{PRT} child {node[above=-.1exof ts-1-6] {RP}}}}
+                child { node[above=-.1exof ts-1-4] {VBD}}}
+            child {node[above=2ex of ts-1-2, xshift=1ex] {NP}
+                child {node[above=-.1exof ts-1-2] {DT}}
+                child {node[above=-.1exof ts-1-3] {NN}}}};}}%

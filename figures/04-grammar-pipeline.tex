@@ -23,7 +23,7 @@
         \node[draw, fit=(parser) (parserboxn) (parserboxs)] (parserbox) {};
 
         \node[right=of parserbox, scale=0.6, yshift=-4mm] (derivation) {
-            \subfile{03-lexderiv.tex}};
+            \subfile{derivs/01-survey.tex}};
         \node[gray, inner sep=0pt, anchor=west] (derivlab) at (derivation.north west|-sentence) {derivation};
 
 
@@ -34,7 +34,7 @@
 
         % term-1-1 is overwritten in figures/discontinuous-parse-reordered.tex
         \node[right=of transbox, scale=0.8, yshift=-4mm] (parse) {
-            \subfile{01-ctree.tex}
+            \subfile{ctrees/01-survey.tex}
         };
         \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse.north west|-sentence) {parse tree};
 
