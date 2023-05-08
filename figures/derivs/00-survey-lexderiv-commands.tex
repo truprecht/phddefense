@@ -29,15 +29,15 @@
 \newcommand{\whclause}{%
     \tikz[tcomp]\node{WH} child {node{WRB} child {node {where}}};}%
 \newcommand{\prtclause}{%
-    \tikz[tcomp]{\node(r) {$a^\downarrow$};\node[right=of r]{PRT} child {node{RP} child {node {out}}};}}%
+    \tikz[tcomp]{\node(r) {\iparam{}};\node[right=of r]{PRT} child {node{RP} child {node {out}}};}}%
 \newcommand{\nnclause}{%
-    \tikz[tcomp]\node{NP} child {node {$a^\downarrow$}} child {node{NN} child {node {survey}}};}%
+    \tikz[tcomp]\node{NP} child {node {\iparam{}}} child {node{NN} child {node {survey}}};}%
 %
 %
 \newcommand{\prteval}{%
     \tikz[tcomp]{
         \matrix (ts) [tmat] {\strut \& \strut out\\};
-        \node[above=2ex of ts-1-1] {$a^\downarrow$};
+        \node[above=2ex of ts-1-1] {\iparam};
         \node[above=2ex of ts-1-2]{PRT} child {node {RP}};}}%
 \newcommand{\wheval}{%
     \tikz[tcomp]{
@@ -62,7 +62,7 @@
 \newcommand{\nneval}{%
     \tikz[tcomp]{
         \matrix (ts) [tmat] {\strut \& \strut survey \\};
-        \node[above=2.5ex of ts-1-1]{NP} child {node {$a^\downarrow$}} child {node[above=of ts-1-2] {NN}};}}%
+        \node[above=2.5ex of ts-1-1]{NP} child {node {\iparam}} child {node[above=of ts-1-2] {NN}};}}%
 \newcommand{\rooteval}{%
     \tikz[tcomp]{
         \matrix (ts) [tmat] {\strut where \& \strut the \& \strut survey \& \strut was \& \strut carried \& \strut out\\};

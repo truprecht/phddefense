@@ -1,0 +1,143 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \input{derivs/00-survey-lexderiv-commands.tex}
+    \newcommand{\guidedtree}[5]{\begin{tikzpicture}[
+            edge from parent path={(\tikzparentnode.south) -- ++(0,-.7ex) -| (\tikzchildnode.north)},
+            every path/.style={line width=.2ex},
+            level distance=3.5ex,
+            node distance=0ex,
+            anchor=center,
+            level 1/.style={sibling distance=8em},
+            level 2/.style={sibling distance=5em},
+            level 3/.style={sibling distance=4em},
+            every node/.style={font=\small}
+            ]
+            \coordinate (pos-1-1) at (0,0);\coordinate (pos-1-2) at (.9,0);\coordinate (pos-1-3) at (1.6,0);\coordinate (pos-1-4) at (2.2,0);\coordinate (pos-1-5) at (2.8,0);\coordinate (pos-1-6) at (3.4,0);\coordinate[fit=(pos-1-1)(pos-1-6)] (pos) {};
+
+            \begin{scope}[every node/.style={font=\small, inner sep=1pt}]
+                \node[above=14ex of pos, xshift=-3em] (sbar) {SBAR+S}
+                child { node[xshift=3em] (vp1) {VP}
+                    child { node[xshift=2em] (vp2) {VP}
+                        child { node[above= of pos-1-1] {0} }
+                        child { node[xshift=13.5ex] (vpbin) {VP-B}
+                            child { node[above=of pos-1-5] (term4) {4} }
+                            child { node[above=of pos-1-6] (prt) {5}   }}}
+                    child {
+                        node[above=of pos-1-4] (term3) {3}}}
+                child { node[yshift=-7ex, xshift=-2.5em] (np) {NP}
+                    child { node[above=of pos-1-2] (term1) {1} }
+                    child {
+                        node[above=of pos-1-3] (term2) {2}}};
+            \end{scope}
+
+            % shortest guide
+            \begin{scope}[font=\small, gray, every node/.style={inner sep=1pt, circle, draw, font=\scriptsize}]
+                \node [right=of sbar] {#1};
+                \node [right=of np] {#2};
+                \node [right=of vp1] {#3};
+                \node [right=of vp2] {#4};
+                \node [right=of vpbin] {#5};
+%                \node[draw, gray, circle] at (term2) {\phantom{2}};
+            \end{scope}
+
+            % redraw corssing edges with white foundation
+            \begin{scope}
+                \draw[white, line width=.7ex] (vp1.south) -- ++(0,-.7ex) -| (term3.north);
+                \draw (vp1.south) -- ++(0,-.7ex) -| (vp2.north);
+                \draw (vp1.south) -- ++(0,-.7ex) -| (term3.north);
+
+                \draw[white, line width=.7ex] (sbar.south) ++(.5pt,-.5ex) -| (np.north);
+                \draw (sbar.south) -- ++(0,-.7ex) -| (np.north);
+                \draw (sbar.south) -- ++(0,-.7ex) -| (vp1.north);
+            \end{scope}
+    \end{tikzpicture}}
+
+    \begin{tikzpicture}
+        \matrix (guides) [matrix of nodes, ampersand replacement=\&, column sep=12pt] {
+            |[gray]| vanilla \& |[gray]| strict \& |[gray]| near \& |[gray]| less \& |[gray]| modifier \\
+            |[scale=.35]| \guidedtree{2}{3}{4}{1}{5} \& |[scale=.35]| \guidedtree{2}{3}{4}{5}{6} \& |[scale=.35]| \guidedtree{4}{2}{1}{5}{6} \& |[scale=.35]| \guidedtree{3}{2}{4}{1}{5} \& |[scale=.35]| \guidedtree{3}{2}{6}{1}{5} \\
+        };
+
+
+        \node[scale=0.6, below=3mm of guides.south west, anchor=north west] (strictguide) {\subfile{ctrees/05-survey-guided.tex}};
+
+        \node[below=4mm of strictguide, font=\small, scale=.65] (l2rrules) {\begin{tabular}{ll}
+                where &   $\text{arg}(V) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
+                the &  $S \to [x_1 \wildcard{} y_1\,x_2]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
+                survey &  $N \to [\wildcard{}] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\iparam{}}} child {node {\wildcard{}}}; \end{bmatrix}$ \\[2mm]
+                was &   $V_2 \to [x_1, \wildcard{} x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\wildcard{}}}; \end{bmatrix} (V_2)$ \\[2mm]
+                carried &  $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\text{-}B)$ \\[2mm]
+                out & $V\text{-}B \to [\wildcard{}] [\iparam{} \wildcard{}]$
+        \end{tabular}};
+
+        \node[scale=0.6, right=of strictguide, visible on=<22->] (modguide) {
+            \begin{tikzpicture}[
+                edge from parent path={(\tikzparentnode.south) -- ++(0,-.5ex) -| (\tikzchildnode.north)},
+                every path/.style={line width=.2ex},
+                level distance=4.5ex,
+                node distance=4ex,
+                anchor=center,
+                level 1/.style={sibling distance=1.5em},
+                level 2/.style={sibling distance=2em},
+                level 3/.style={sibling distance=20em},
+                every node/.style={font=\small},
+                %        remember picture
+                ]
+                \matrix (pos) [matrix of nodes, every node/.style={anchor=center, inner sep=0pt, font=\strut, minimum height=12pt}, column sep=6pt, ampersand replacement=\&] {
+                    |[font=\scriptsize]| WH+WRB \& PT \& NN \& VBD \& VBN \& |[font=\scriptsize]| {PRT+RP} \\
+                    where \& the  \& survey     \& was \& carried     \& out   \\
+                };
+
+                \node[above=17ex of pos, xshift=-8ex, alarm on=<8|handout:0>] (sbar) {SBAR+S}
+                child { node[] (vp1) {VP}
+                    child { node[alarm on=<6|handout:0>] (vp2) {VP}
+                        child { node[above=0ex of pos-1-1, alarm on=<7|handout:0>] (wrb) {1}}
+                        child { node[xshift=1ex] (vpbin) {VP\(^B\)}
+                            child { node[above=0ex of pos-1-5] (term4) {5} edge from parent[double]}
+                            child { node[above=0ex of pos-1-6] (prt) {6} }
+                        edge from parent[double]}}
+                    child { node[above=0ex of pos-1-4] (term3) {4} }}
+                child { node[yshift=-9ex, alarm on=<11|handout:0>] (np) {NP}
+                    child { node[above=0ex of pos-1-2, alarm on=<8-10|handout:0>] {2} }
+                    child { node[above=0ex of pos-1-3, alarm on=<11|handout:0>] (term2) {3} edge from parent[double]}};
+
+                % redraw corssing edges with white foundation
+                \begin{scope}[draw]
+                    \draw[white, line width=1ex] (vp1.south) -- ++(0,-.5ex) -| (term3.north);
+                    \draw (vp1.south) -- ++(0,-.5ex) -| (vp2.north);
+                    \draw[double] (vp1.south) -- ++(0,-.5ex) -| (term3.north);
+
+                    \draw[white, line width=1ex] (sbar.south) -- ++(0,-.7ex) -| (np.north);
+                    \draw (sbar.south) -- ++(0,-.5ex) -| (np.north);
+                    \draw[double] (sbar.south) -- ++(0,-.5ex) -| (vp1.north);
+                \end{scope}
+
+                \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, gray]
+                    \node<28-> at (term3) {\phantom{1}};
+                    \node<27-> [right=of sbar] {3};
+                    \node<24-> [right=of np] {2};
+                    \node<26-> [left=of vp1] {5};
+                    \node<25-> [left=of vp2] {1};
+                    \node<23-> [left=of vpbin] {6};
+                \end{scope}
+        \end{tikzpicture}};
+
+        \node[below=4mm of modguide, font=\small, scale=.65, visible on=<29>] (r2lrules) {\begin{tabular}{ll}
+                where &   \(V_2 \to [\wildcard{}, x_1] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{VP} child {node {\wildcard{}}} child {node {$x$} child {node {\iparam{}}}}; \end{bmatrix} (V\text{-}B)\) \\[2mm]
+                the & $N \to [\wildcard{}]\begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\wildcard{}}} child {node {\iparam{}}}; \end{bmatrix}$ \\[2mm]
+                survey &  $S \to [x_1\,y_1 \wildcard{} x_2] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
+                was &  arg$(V) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
+                carried &   $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$} child {node {\wildcard{}}}} child {node {$y$}}; \end{bmatrix} (V_2, \text{arg}(V))$ \\[2mm]
+                out &   $V\text{-}B \to [\wildcard{}] [\iparam{} \, \wildcard{}]$
+        \end{tabular}};
+
+
+        \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth, node distance=1.5ex]
+            \draw<21> (guides-2-2) edge[in=0, out=-60, ->] (strictguide);
+            \draw<22> (guides-2-5) edge[in=0, out=-60, ->] (modguide);
+            \draw (strictguide) edge[->] (l2rrules);
+            \draw<29-> (modguide) edge[->] (r2lrules);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

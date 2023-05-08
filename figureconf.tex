@@ -1,6 +1,9 @@
 \newcommand{\nt}[1]{#1}
 \newcommand{\term}[1]{#1}
 \newcommand{\x}[1]{#1}
+\newcommand{\wildcard}{\ensuremath{*}}
+\newcommand{\iparam}{\ensuremath{\alpha}}
+
 
 \tikzset{
     invisible/.style={opacity=0},
@@ -20,7 +23,8 @@
         inner sep=0pt,
         outer sep=0pt
     },
-    cross/.default={1pt}
+    cross/.default={1pt},
+    triangle/.style={regular polygon, regular polygon sides=3, draw}
 }
 
 

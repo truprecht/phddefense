@@ -1,0 +1,92 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \input{derivs/00-survey-lexderiv-commands.tex}
+    \begin{tikzpicture}
+        \node[scale=0.6] (ctree) {\subfile{ctrees/01-survey.tex}};
+
+        \node[scale=0.6, right=of ctree] (l2rtree) {\subfile{ctrees/05-survey-guided.tex}};
+
+        \node[right=of l2rtree, font=\small, scale=.65] (l2rrules) {\begin{tabular}{ll}
+                where  & $\text{arg}(V) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
+                the  & $S \to [x_1\wildcard{}y_1\,x_2]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
+                survey & $N \to [\wildcard{}] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\iparam{}}} child {node {\wildcard{}}}; \end{bmatrix}$ \\[2mm]
+                was  & $V_2 \to [x_1, \wildcard{}x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\wildcard{}}}; \end{bmatrix} (V_2)$ \\[2mm]
+                carried  & $V_2 \to [x_1, \wildcard{}y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\text{-}B)$ \\[2mm]
+                out & $V\text{-}B \to [\wildcard{}] [\iparam{}  \wildcard{}] ()$
+        \end{tabular}};
+
+        \node[scale=0.6, below=of ctree.south east, anchor=north, visible on=<22->] (r2ltree) {
+            \begin{tikzpicture}[
+                edge from parent path={(\tikzparentnode.south) -- ++(0,-.5ex) -| (\tikzchildnode.north)},
+                every path/.style={line width=.2ex},
+                level distance=4.5ex,
+                node distance=4ex,
+                anchor=center,
+                level 1/.style={sibling distance=1.5em},
+                level 2/.style={sibling distance=2em},
+                level 3/.style={sibling distance=2em},
+                every node/.style={font=\small},
+                remember picture
+                ]
+                \matrix (pos) [matrix of nodes, every node/.style={anchor=center, inner sep=0pt, font=\strut, minimum height=12pt}, column sep=6pt, ampersand replacement=\&] {
+                    |[font=\scriptsize]| \alert<24>{W}H+WRB \& PT \& NN \& VBD \& \alert<24>{V}BN \& |[font=\scriptsize]| {PRT+RP} \\
+                    where \& the  \& survey     \& was \& carried     \& out   \\
+                };
+
+                \node[above=21.5ex of pos, xshift=-8ex] (sbar) {SBAR+S$^{\visible<25->{\alert<25>{SBAR}}}$}
+                child { node[] (vp1) {VP$^{\visible<25->{\alert<25>{S}}}$}
+                    child { node[] (vp2) {VP$^{\visible<25->{\alert<25>{VP}}}$}
+                        child { node[xshift=1ex, text width=5.5em] (vpbin) {VP\(^{\only<25->{\alert<25>{VP}}}\)-\({B\alert<24>{\only<24->{(W,V)}}}\)}
+                            child { node[above=0ex of pos-1-1] (wrb) {1}}
+                            child { node[above=0ex of pos-1-5] (term4) {5}}}
+                        child { node[above=0ex of pos-1-6] (prt) {6} }}
+                    child { node[above=0ex of pos-1-4] (term3) {4} }}
+                child { node[yshift=-13.5ex] (np) {NP$^{\visible<25->{\alert<25>{S}}}$}
+                    child { node[above=0ex of pos-1-2] {2} }
+                    child { node[above=0ex of pos-1-3] (term2) {3} }};
+
+                % redraw corssing edges with white foundation
+                \begin{scope}[draw]
+                    \draw[white, line width=1ex] (vp1.south) -- ++(0,-.5ex) -| (term3.north);
+                    \draw (vp1.south) -- ++(0,-.5ex) -| (term3.north);
+                    %        \draw[densely dotted, white] (vp1.south) -- ++(0,-.7ex) -| (term3.north);
+                    \draw (vp1.south) -- ++(0,-.5ex) -| (vp2.north);
+
+                    \draw[white, line width=1ex] (sbar.south) -- ++(0,-.7ex) -| (np.north);
+                    \draw (sbar.south) -- ++(0,-.5ex) -| (np.north);
+                    \draw (sbar.south) -- ++(0,-.5ex) -| (vp1.north);
+                \end{scope}
+
+
+                \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, gray]
+                    \node at (wrb) {\phantom{1}};
+                    \node [right=of sbar] {2};
+                    \node [right=of np] {3};
+                    \node [left=of vp1] {4};
+                    \node [left=of vp2] {6};
+                    \node [left=of vpbin] {5};
+                \end{scope}
+            \end{tikzpicture}};
+
+        \node[right=of r2ltree, font=\small, scale=.65, visible on=<23->] (r2lrules) {\begin{tabular}{ll}
+            where &  \alert<23>{$\text{arg}(V^{\visible<25->{\alert<25>{V}}}$-${B\alert<24>{\visible<24>{(W,V)}}}) \to [\wildcard{}][\wildcard{}]$} \\[2mm]
+            the & $S^{\visible<25->{\alert<25>{S}}} \to [x_1\wildcard{}y_1\,x_2]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2^{\visible<25->{\alert<25>{S}}}, N^{\visible<25->{\alert<25>{S}}})$ \\[2mm]
+            survey &   $N^{\visible<25->{\alert<25>{S}}} \to [\wildcard{}] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\iparam{}}} child {node {\wildcard{}}}; \end{bmatrix}$ \\[2mm]
+            was &  $V_2^{\visible<25->{\alert<25>{S}}} \to [x_1,\wildcard{}x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\wildcard{}}}; \end{bmatrix} (V_2^{\visible<25->{\alert<25>{V}}})$ \\[2mm]
+            carried &  \alert<23>{$V^{\visible<25->{\alert<25>{V}}}$-${B\alert<24>{\visible<24>{(W,V)}}}_2 \to [x_1, \wildcard{}] [x  \wildcard{}] (\text{arg}(V^{\visible<25->{\alert<25>{V}}}$-${B\alert<24>{\visible<24>{(W,V)}}}))$ } \\[2mm]
+            out &   \alert<23>{$V_2^{\visible<25->{\alert<25>{V}}} \to [x_1, x_2\wildcard{}] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\wildcard{}}};\end{bmatrix} (V^{\visible<25->{\alert<25>{V}}}$-${B\alert<24>{\visible<24>{(W,V)}}}_2)$}
+        \end{tabular}};
+
+
+        \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth, node distance=1.5ex]
+            \draw (ctree) edge[->] coordinate (lrlabel) (l2rtree);
+            \node[above of=lrlabel, font=\tiny] {left-to-right};
+            \node[below of=lrlabel, font=\tiny] {\(h = 0\), \(v=1\)};
+            \draw (l2rtree) edge[->] (l2rrules);
+
+            \draw<22-> (ctree) edge[->] node[left, align=center, font=\tiny]     {right-to-left\\\(h=\alt<-23>{0}{\alert<24>{2}}\), \(v=\alt<-24>{1}{\alert<25>{2}}\)} (r2ltree);
+            \draw<23-> (r2ltree) edge[->] (r2lrules);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

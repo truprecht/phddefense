@@ -1,0 +1,30 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \centering
+    \begin{tabular}{ll*{5}{|c}}
+        \toprule
+        && \multicolumn{5}{c}{guide} \\
+        && vanilla & strict & least & shortest & modifier \\ \midrule
+        \multirow{3}{*}{\rotatebox{90}{nt.\@ con.}}&
+        vanilla        & \cellcolor{cyan!22} 3265 & \cellcolor{cyan!40} 2773 & \cellcolor{cyan!0} 4677 & \cellcolor{cyan!2} 4236 & \cellcolor{cyan!0} 4528 \\
+        &classic        & \cellcolor{cyan!59} 2367 & \cellcolor{cyan!67} 2228 & \cellcolor{cyan!14} 3544 & \cellcolor{cyan!13} 3611 & \cellcolor{cyan!13} 3587 \\
+        &coarse         & \cellcolor{cyan!95} 1754 & \cellcolor{cyan!100} 1677 & \cellcolor{cyan!38} 2823 & \cellcolor{cyan!38} 2837 & \cellcolor{cyan!34} 2933 \\
+        \bottomrule
+    \end{tabular}\\[1mm]
+    number of extracted blueprints\\[5mm]
+    \pause
+    \setlength\tabcolsep{3pt} % default value: 6pt
+    \begin{tabular}{ll*{5}{|cc}}
+        \toprule
+        && \multicolumn{5}{c}{guide} \\
+        && \multicolumn{2}{c|}{vanilla}  & \multicolumn{2}{c|}{strict}   & \multicolumn{2}{c}{least}     & \multicolumn{2}{c}{shortest}   & \multicolumn{2}{c}{modifier}\\
+        && F1 & acc. & F1 & acc. & F1 & acc. & F1 & acc.  & F1 & acc.  \\\midrule
+        \multirow{3}{*}{\rotatebox{90}{nt.\@ con.}}&
+        vanilla & \cellcolor{orange!0} 89.7 & \cellcolor{green!6} 85.9 & \cellcolor{orange!64} 90.9 & \cellcolor{green!76} 88.2 & \cellcolor{orange!0} 86.9 & \cellcolor{green!0} 78.9 & \cellcolor{orange!0} 87.4 & \cellcolor{green!0} 78.9 & \cellcolor{orange!0} 89.1 & \cellcolor{green!42} 87.1 \\
+        &classic & \cellcolor{orange!28} 90.5 & \cellcolor{green!0} 84.6 & \cellcolor{orange!100} 91.2 & \cellcolor{green!100} 89.0 & \cellcolor{orange!0} 88.8 & \cellcolor{green!0} 82.6 & \cellcolor{orange!0} 87.8 & \cellcolor{green!0} 78.8 & \cellcolor{orange!22} 90.4 & \cellcolor{green!48} 87.3 \\
+        &coarse  & \cellcolor{orange!2} 89.9 & \cellcolor{green!0} 85.7 & \cellcolor{orange!54} 90.8 & \cellcolor{green!94} 88.8 & \cellcolor{orange!0} 88.3 & \cellcolor{green!0} 82.5 & \cellcolor{orange!0} 87.7 & \cellcolor{green!0} 79.6 & \cellcolor{orange!7} 90.1 & \cellcolor{green!64} 87.8 \\
+        \bottomrule
+    \end{tabular}\\[1mm]
+    f1-score on treebank's dev portion\\\null
+\end{document}

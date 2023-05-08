@@ -1,0 +1,21 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \centering
+    \newcommand{\vbin}[1]{\multicolumn{1}{c|}{\(v=#1\)}}
+    \newcommand{\fonefoned}{F1}
+    \begin{tabular}{lc*{6}{|c}}
+        \toprule
+        &&\multicolumn{6}{c}{\textcolor{gray}{Markovization}}\\
+        && \multicolumn{3}{c|}{\(h=0\)}                & \multicolumn{3}{c}{\(h=1\)} \\
+        && \vbin{0} & \vbin{1} & \vbin{2}              & \vbin{0} & \vbin{1} & \multicolumn{1}{c}{\(v=2\)}   \\
+        \textcolor{gray}{guide}& \textcolor{gray}{bin.\@ dir.}& \fonefoned{} & \fonefoned{}  & \fonefoned{} & \fonefoned{}  & \fonefoned{} & \fonefoned{}  \\\midrule\multirow{2}{*}{vanilla}    &  rl & \cellcolor{orange!56} 90.8 & \cellcolor{orange!66} 90.9 & \cellcolor{orange!4} 89.9 & \cellcolor{orange!0} 89.3 & \cellcolor{orange!0} 87.5 & \cellcolor{orange!0} 85.0 \\
+        &  ho & \cellcolor{orange!0} 84.6 & \cellcolor{orange!2} 89.8 & \cellcolor{orange!0} 88.6 & \cellcolor{orange!0} 88.2 & \cellcolor{orange!0} 86.2 & \cellcolor{orange!0} 81.1 \\
+        \multirow{2}{*}{classic}    &  rl & \cellcolor{orange!66} 90.9 & \cellcolor{orange!100} 91.2 & \cellcolor{orange!4} 89.9 & \cellcolor{orange!2} 89.8 & \cellcolor{orange!0} 88.5 & \cellcolor{orange!0} 86.1 \\
+        &  ho & \cellcolor{orange!0} 84.2 & \cellcolor{orange!66} 90.9 & \cellcolor{orange!0} 88.5 & \cellcolor{orange!0} 89.2 & \cellcolor{orange!0} 87.6 & \cellcolor{orange!0} 83.9 \\
+        \multirow{2}{*}{coarse}     &  rl & \cellcolor{orange!32} 90.5 & \cellcolor{orange!56} 90.8 & \cellcolor{orange!10} 90.1 & \cellcolor{orange!25} 90.4 & \cellcolor{orange!6} 90.0 & \cellcolor{orange!0} 89.5 \\
+        &  ho & \cellcolor{orange!0} 84.2 & \cellcolor{orange!32} 90.5 & \cellcolor{orange!0} 89.7 & \cellcolor{orange!0} 89.6 & \cellcolor{orange!4} 89.9 & \cellcolor{orange!0} 89.2 \\
+        \bottomrule
+    \end{tabular}\\[1mm]
+    f1-score on treebank's dev portion\\\null
+\end{document}

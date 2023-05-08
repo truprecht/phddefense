@@ -15,19 +15,24 @@
         }
 
         \node[right=of bintree, font=\scriptsize] (rulelist) {\begin{tabular}{lll}
-               \visible<6->{where &  \tiny WH+WRB & $\text{arg}(V) \to [1][1]$} \\[2mm]
-               \visible<7->{the & PT & $S \to [\visible<8->{x_1}\,2\,\visible<9->{y_1}\,\visible<8->{x_2}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {2}}}};\end{bmatrix} (V, N)$} \\[2mm]
-               \visible<10->{survey &  NN & $N \to [3] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node[visible on=<11->, alarm on=<11>] {$a$}} child {node {3}}; \end{bmatrix}$} \\[2mm]
-               \visible<12->{was &  VBD & $V \to [x_1\,4\,x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {4}}; \end{bmatrix} (V)$} \\[2mm]
-               \visible<13->{carried &  VBN & $V \to [x_1\,5\,y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {5}}}; \end{bmatrix} (\text{arg}(V), V^B)$} \\[2mm]
-               \visible<14->{out &  \tiny PRT+RP & $V^B \to [6] [a \, 6] (V)$}
+               \visible<7->{where &  \tiny WH+WRB & $\text{arg}(V) \to [\alt<-15|handout:0>{1}{\wildcard{}}][\alt<-15|handout:0>{1}{\wildcard{}}]$} \\[2mm]
+%
+               \visible<8->{the & PT & $S \to [\visible<9->{x_1} \alt<-15|handout:0>{2}{\wildcard{}} \visible<10->{y_1}\,\visible<9->{x_2}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\alt<-15|handout:0>{2}{\wildcard{}}}}}};\end{bmatrix} (V, N)$} \\[2mm]
+%
+               \visible<11->{survey &  NN & $N \to [\alt<-15|handout:0>{3}{\wildcard{}}] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node[visible on=<12->, alarm on=<12|handout:0>] {\iparam{}}} child {node {\alt<-15|handout:0>{3}{\wildcard{}}}}; \end{bmatrix}$} \\[2mm]
+%
+               \visible<13->{was &  VBD & $V_2 \to [x_1, \alt<-15|handout:0>{5}{\wildcard{}} x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\alt<-15|handout:0>{4}{\wildcard{}}}}; \end{bmatrix} (V)$} \\[2mm]
+%
+               \visible<14->{carried &  VBN & $V_2 \to [x_1, \alt<-15|handout:0>{5}{\wildcard{}} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {\alt<-15|handout:0>{5}{\wildcard{}}}}}; \end{bmatrix} (\text{arg}(V), V^B)$} \\[2mm]
+%
+               \visible<15->{out &  \tiny PRT+RP & $V^B \to [\alt<-15|handout:0>{6}{\wildcard{}}] [\iparam{} \alt<-15|handout:0>{6}{\wildcard{}}] (V)$}
         \end{tabular}};
 
 
         \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth]
-            \draw[visible on=<2->] (ctree.-100) edge[bend right, ->] node[left] {binarization:\\$\bullet$\,type (l2r, ho, r2l)\\$\bullet$\,markovzation } (bintree.west);
-            \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right] {add guide values\\$\bullet$\,guide constructor} (guidetree);
-            \draw[visible on=<6->] (guidetree) edge[->] node[above right] {rule extraction\\$\bullet$\,nonterminal constructor} (rulelist);
+            \draw[visible on=<2->] (ctree.-100) edge[bend right, ->] node[left, alarm on=<17|handout:0>] {binarization:\\$\bullet$\,type (l2r, ho, r2l)\\$\bullet$\,markovzation } (bintree.west);
+            \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right, alarm on=<18|handout:0>] {add guide values\\$\bullet$\,guide constructor} (guidetree);
+            \draw[visible on=<6->] (guidetree.-30) edge[bend left, ->] node[above right, alarm on=<19|handout:0>] {rule extraction\\$\bullet$\,nonterminal constructor} (rulelist);
         \end{scope}
     \end{tikzpicture}
 \end{document}
