@@ -134,8 +134,8 @@
 
 
         \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth, node distance=1.5ex]
-            \draw<21> (guides-2-2) edge[in=0, out=-60, ->] (strictguide);
-            \draw<22> (guides-2-5) edge[in=0, out=-60, ->] (modguide);
+            \draw (guides-2-2) edge[in=0, out=-60, ->,  visible on=<21>] (strictguide);
+            \draw (guides-2-5) edge[in=0, out=-60, ->,  visible on=<22>] (modguide);
             \draw (strictguide) edge[->] (l2rrules);
             \draw<29-> (modguide) edge[->] (r2lrules);
         \end{scope}

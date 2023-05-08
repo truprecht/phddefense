@@ -15,6 +15,8 @@
     \insertframenumber\,/\,\inserttotalframenumber%
     \hspace*{2pt}\vskip2pt%
 }
+\setbeamertemplate{itemize item}{--}
+\setbeamertemplate{itemize subitem}{--}
 
 \title{On the Extraction of Lexicalized Grammars\\and Parsing via Supertagging\\for Discontinuous Constituent Structures}
 \subtitle{Status talk}
@@ -25,6 +27,7 @@
 \institute{Institute for Theoretical Computer Science\\Faculty of Computer Science\\Technische Universität Dresden, Germany}
 \date{Mai 9, 2023}
 
+%\includeonlyframes{working}
 \begin{document}
     \begin{frame}[noframenumbering,plain]
         \maketitle
@@ -35,7 +38,7 @@
     \end{frame}
 
     \section{Introdcution}
-    \begin{frame}{(Discontinuous) Constituency Trees}
+    \begin{frame}[label=working]{(Discontinuous) Constituency Trees}
         \begin{minipage}{.4\linewidth}
             \resizebox{\linewidth}{!}{
                 \subfile{figures/01-ctree-annotations}}
@@ -60,12 +63,11 @@
                     \bottomrule
                 \end{tabular}}
                 \item<+-> parsing = prediction of structure for sentence
-                \item<+-> building block in higher-level NLP tasks
+                \item<+-> building block in higher-level NLP tasks, e.g.\@
                 \begin{itemize}
                     \item translation \citep{Zhang19, Yang22}
                     \item relation extraction \citep{Nguyen19}
                     \item summarization \citep{Balachandran21}
-                    \item ...
                 \end{itemize}
             \end{itemize}
         \end{minipage}
@@ -132,7 +134,8 @@
     \end{frame}
 
     \begin{frame}<21->{Lexicalized Rule Extraction: Guide Constructors}
-        \resizebox{!}{\paperheight}{\subfile{figures/11-guides.tex}}
+        \centering
+        \resizebox{!}{.9\textheight}{\subfile{figures/11-guides.tex}}
     \end{frame}
 
     \begin{frame}<18,19>{Lexicalized Rule Extraction}
@@ -205,7 +208,7 @@
                 & this work                      & (bert-L) & \bfseries 93.9  &  \bfseries 79.1  &  88 & \bfseries 91.6 &  \bfseries 75.4  & 77 & 94.9 & 82.4 & 64          \\
                 %        & \citealp{RupMoe21}        & --       & 82.7  &  49.0  &  136 & 82.5 &  55.9  & 101 & 90.1 & 72.9 & 95   \\
                 & \citealp{RupMoe21}        & (bert-b) & 90.9  &  72.6  &  68 & 88.3 &  69.0  & 60 & 93.3 & 80.5 & 57   \\\midrule
-                \multirow{2}{*}{C}
+                \multirow{1}{*}{C}
                 %        & \citealp{Cor20}           & --       & 86.3  &  56.1  & 478 & 85.2 &  51.2  & 474& 92.9 & 64.9 & 355               \\
                 & \citealp{Cor20}           & (bert-b) & 91.6  &  66.1  &  -- & 90.0 &  62.1  & -- & 94.8 & 68.9 & --   \\
 %                & \citealp{StaSte20}        & --       & 83.3  &  50.7  &  15 & 83.4 &  53.5  &  9 & 90.5 & 67.7 & --   \\
@@ -263,21 +266,21 @@
     \section{Publications}
     \begin{frame}{Publications}
         \begin{itemize}
-            \item \citealp*{RupDen19}, \emph{Implementation of a {C}homsky-Sch{\"u}tzenberger n-best parser for weighted multiple context-free grammars} in \emph{Proceedings of the 2019 Conference of the NAACL}.
+            \item \citealp*{RupDen19}, \emph{Implementation of a {C}homsky-Sch{\"u}tzenberger n-best parser for weighted multiple context-free grammars} in \emph{NAACL Proceedings}.
                 \begin{itemize}
                     \item statistical parser implementation for LCFRS
                     \item includes context-free approximation, refinement and fallbacks
                 \end{itemize}
-            \item \citealp{MoeRup20}\emph{Lexicalization of Probabilistic Linear Context-free Rewriting Systems} in \emph{Proceedings of the 16th IWPT}.
+            \item \citealp{MoeRup20}\emph{Lexicalization of Probabilistic Linear Context-free Rewriting Systems} in \emph{IWPT Proceedings}.
                 \begin{itemize}
                     \item lexicalization scheme for probabilistic LCFRS and $k$-best parsing
                 \end{itemize}
-            \item \citealp{RupMoe21}, \emph{Supertagging-based Parsing with Linear Context-free Rewriting Systems} in \emph{Proceedings of the 2021 Conference of the NAACL}.
+            \item \citealp{RupMoe21}, \emph{Supertagging-based Parsing with Linear Context-free Rewriting Systems} in \emph{NAACL Proceedings}.
                 \begin{itemize}
                     \item supertag extraction using LCFRS based on previous paper
                     \item parsing included fallback mechanisms similar to first paper
                 \end{itemize}
-            \item \citealp{Rup22}, \emph{Improving the Extraction of Supertags for Constituency Parsing with Linear Context-Free Rewriting Systems} in \emph{Findings of the ACL: EMNLP 2022}.
+            \item \citealp{Rup22}, \emph{Improving the Extraction of Supertags for Constituency Parsing with Linear Context-Free Rewriting Systems} in \emph{Findings of ACL: EMNLP}.
                 \begin{itemize}
                     \item modularization an generalization of extraction scheme for LCFRS supertags
                     \item rigorous evaluation of extraction parameters
@@ -288,6 +291,7 @@
 
     \section*{References}
     \begin{frame}[fragile,noframenumbering,plain,allowframebreaks]{References}
+        \footnotesize
         \bibliography{references}
         \bibliographystyle{acl_natbib}
     \end{frame}
