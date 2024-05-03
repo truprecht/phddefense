@@ -125,7 +125,7 @@
         \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
     \end{frame}
 
-    \begin{frame}<21->{Lexicalized Rule Extraction: Binarization \citep{,KalMai13}}
+    \begin{frame}<21->{Lexicalized Rule Extraction: Binarization \citep{KalMai13}}
         \resizebox{\linewidth}{!}{\subfile{figures/10-binarization.tex}}
     \end{frame}
 
@@ -156,16 +156,16 @@
     \begin{frame}{Neural Prediction Models}
 %        \begin{minipage}{.5\linewidth}
             \begin{itemize}
-                \item<+-> pretrained transformer models \citep{vaswani2017attention, Devlin2019} (semi-supervised)
+                \item<+-> pretrained transformer models \citep[semi-supervised;][]{vaswani2017attention, Devlin2019}
                 \begin{itemize}
                     \item used as off-the-shelf encoding
                     \item decoding via feed-forward layers
                     \item fine-tuning with extracted supertags + pos tags
-                    \item used in s.o.t.a. models in various tasks including parsing \citep{Cor20, FerGom20a, FerGom22,Coa21, Sun22}
+                    \item used in s.o.t.a. models in various tasks including parsing \citep{Cor20, FerGom22,Coa21, Sun22}
                 \end{itemize}
                 \item<+-> architecture without pretraining (supervised)
                 \begin{itemize}
-                    \item fresh word + character embeddings
+                    \item fresh word + character-based embeddings
                     \item encoding via bidrectional LSTM \citep{Hoc97} layers
                     \item decoding via feed-forward layers
                     \item training from ground up with extracted data
@@ -205,7 +205,7 @@
                 \multirow{3}{*}{GS}
                 %        & ours                      & --        & 83.7  &  52.9  &  132 & 83.7 & 59.5   & 104 & 91.7 & 74.2 & 82        \\
                 & this work                      & (bert-b) & 91.8  &  74.6  & 120 & 89.7 &  72.6  &105 & 94.4 & 82.0 & 81   \\
-                & this work                      & (bert-L) & \bfseries 93.9  &  \bfseries 79.1  &  88 & \bfseries 91.6 &  \bfseries 75.4  & 77 & 94.9 & 82.4 & 64          \\
+                & this work                      & (bert-L) & \bfseries 93.9  &  \bfseries 79.1  &  88 &  91.6 &  \bfseries 75.4  & 77 & 94.9 & 82.4 & 64          \\
                 %        & \citealp{RupMoe21}        & --       & 82.7  &  49.0  &  136 & 82.5 &  55.9  & 101 & 90.1 & 72.9 & 95   \\
                 & \citealp{RupMoe21}        & (bert-b) & 90.9  &  72.6  &  68 & 88.3 &  69.0  & 60 & 93.3 & 80.5 & 57   \\\midrule
                 \multirow{1}{*}{C}
@@ -222,8 +222,10 @@
                 & \citetalias{VilGom20}     & (bert-L) & --    &  --    & --  & --   &  --    & -- & 92.8 & 53.9 &  --  \\
                 & \citetalias{FerGon21a}    & (bert-b) & 90.0  & 65.9   & 275 & 88.5 & 63.0   &238 & 94.0 & 72.9 & 231  \\
                 & \citetalias{FerGon21a}    & (bert-L) & 92.0  & 67.9   & 216 & 90.5 & 68.1   &207 & 95.1 & 74.1 & 193  \\
-                & \citetalias{FerGon21b}    & (bert-L)\rlap{$\dagger$} & 89.1  & 67.1   & --  & 88.5 & 67.8   & -- & \bfseries 95.5 & \bfseries 82.9 & --   \\
-                & \citetalias{FerGom22}     & (bert-b) & 91.0  & 76.6   & --  & 90.0 & 62.6   &--  & --   & --   & --   \\
+                & \citetalias{FerGon21b}    & (bert-L) & 89.1  & 67.1   & --  & 88.5 & 67.8   & -- & \bfseries 95.5 & \bfseries 82.9 & --   \\
+                & \citetalias{FerGom22}     & (bert-b) & 91.0  & 76.6   & --  & 90.0 & 62.6   &--  & --   & --   &
+                 --   \\
+                & \citealp{Sun22}   & (bert-L)      & 93.6  & 77.0   & 185 &\bfseries 91.9 & 73.9   & 177& 95.0&75.8&161   \\
                 \bottomrule
             \end{tabular}
         }
@@ -283,7 +285,7 @@
             \item \citealp{Rup22}, \emph{Improving the Extraction of Supertags for Constituency Parsing with Linear Context-Free Rewriting Systems} in \emph{Findings of ACL: EMNLP}.
                 \begin{itemize}
                     \item modularization an generalization of extraction scheme for LCFRS supertags
-                    \item rigorous evaluation of extraction parameters
+                    \item evaluation of extraction parameters
                 \end{itemize}
         \end{itemize}
     \end{frame}

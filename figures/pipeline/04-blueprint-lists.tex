@@ -10,7 +10,7 @@
                     the & DT & \(\mathit{S} \to [x_1\,\wildcard{}\,y_1\,x_2][\ldots] (V_2, N)\)\\
                     survey&  NN & \(N \to [\wildcard{}] [\ldots]\)\\
                     was &VBD & \(V_2 \to [x_1, \wildcard{}\, x_2] [\ldots] (V_2)\)\\
-                    carried &VBN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](V^L, V^R)\)\\
+                    carried &VBN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](\mathrm{arg}(V), V\text{-}B)\)\\
                     out&PRT& \(V\text{-}B \to [\wildcard{}][\ldots]\)
                 \end{tabular}};
             \node[below right=.3cm of rules1.north west, anchor=north west, fill=black!20] (rules2) {%
@@ -19,17 +19,17 @@
                     hearing &NN & \(N \to [x_1\,\wildcard{}][\ldots] (N^L)\)\\
                     is &VBZ& \(\mathit{Root} \to [x_1 \wildcard{} x_2] [\ldots] (V_2)\)\\
                     scheduled &VBN & \(V_2 \to [x_1, \wildcard{}\, x_2] [\ldots] (V_2)\)\\
-                    on &IN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](V^L, V^R)\)\\
+                    on &IN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](\mathrm{arg}(V), V\text{-}B)\)\\
                     the &DT& \(V^R \to [\wildcard{}][\ldots]\) \\
-                    issue &NN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](V^L, V^R)\)\\
+                    issue &NN& \(V_2 \to [x_1, \wildcard{}\, y_1] [\ldots](\mathrm{arg}(V), V\text{-}B)\)\\
                     today &NN& \(V\text{-}B \to [\wildcard{}][\ldots]\)
                 \end{tabular}};
             \node[below right=.3cm of rules2.south east, anchor=south east, fill=black!2] (rules3) {%
                 \begin{tabular}{lll}
                     What &WP& \(\mathrm{arg}(V) \to[\wildcard{}] [\ldots]\)\\
-                    should &MD& \(S \to [x_1\,\wildcard{}\,y_1\,x_2][\ldots](V^L, S^R)\)\\
+                    should &MD& \(S \to [x_1\,\wildcard{}\,y_1\,x_2][\ldots](V_2, S\text{-}B)\)\\
                     I &PRP& \(S\text{-}B \to [\wildcard{}][\ldots]\)\\
-                    do &VB& \(V_2 \to [x_1\,\wildcard{}][\ldots] (V^L)\)\\
+                    do &VB& \(V_2 \to [x_1\,\wildcard{}][\ldots] (\mathrm{arg}(V))\)\\
                     ? &\$.& \(S \to [x_1\,\wildcard{}][\ldots] (S)\)
                 \end{tabular}};
         \end{scope}

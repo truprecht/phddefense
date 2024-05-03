@@ -5,27 +5,27 @@
     \begin{tikzpicture}[font=\small, node distance=1em, remember picture]
         \begin{scope}[every node/.style={obox, scale=0.61}]
             \node[fill=black!40] (grules1) {
-                \(V^L \to[\text{where}][\ldots]\)\\
+                \(\mathrm{arg}(V) \to[\text{where}][\ldots]\)\\
                 \(\mathit{Root} \to [x_1\,\text{the}\,y_1\,x_2][\ldots] (V_2, N)\)\\
                 \(N \to [\text{survey}] [\ldots]\)\\
                 \(V_2 \to [x_1, \text{was}\, x_2] [\ldots] (V_2)\)\\
-                \(V_2 \to [x_1, \text{carried}\, y_1] [\ldots](V^L, V^R)\)\\
-                \(V^R \to [\text{out}][\ldots]\)
+                \(V_2 \to [x_1, \text{carried}\, y_1] [\ldots](\mathrm{arg}(V), V\text{-}B)\)\\
+                \(V\text{-}B \to [\text{out}][\ldots]\)
             };
             \node[below right=.5cm of grules1.north west, anchor=north west, fill=black!20] (grules2) {
-                \(V^L \to[\text{where}] [\ldots]\)\\
+                \(\mathrm{arg}(V) \to[\text{where}] [\ldots]\)\\
                 \(\mathit{Root} \to [x_1\,\text{the}\,y_1\,x_2][\ldots] (V_2, N)\)\\
                 \(N \to [\text{survey}] [\ldots]\)\\
                 \(V_2 \to [x_1, \text{was}\, x_2][\ldots] (V_2)\)\\
-                \(V_2 \to [x_1, \text{carried}\, y_1][\ldots] (V^L, V^R)\)\\
-                \(V^R \to [\text{out}][\ldots]\)
+                \(V_2 \to [x_1, \text{carried}\, y_1][\ldots] (\mathrm{arg}(V), V\text{-}B)\)\\
+                \(V\text{-}B \to [\text{out}][\ldots]\)
             };
             \node[below right=.5cm of grules2.north west, anchor=north west, fill=black!2] (grules3) {
-                \(V^L \to[\text{What}] [\ldots]\)\\
-                \(V_2 \to [x_1\,\text{do}][\ldots] (V^L)\)\\
-                \(S \to [x_1\,\text{should}\,y_1\,x_2][\ldots](V^L, S^R)\)\\
-                \(S^R \to [\text{I}][\ldots]\)\\
-                \(\mathit{Root} \to [x_1\,?][\ldots] (S)\)
+                \(\mathrm{arg}(V) \to[\text{What}] [\ldots]\)\\
+                \(V_2 \to [x_1\,\text{do}][\ldots] (\mathrm{arg}(V))\)\\
+                \(S \to [x_1\,\text{should}\,y_1\,x_2][\ldots](V_2, S\text{-}B)\)\\
+                \(S\text{-}B \to [\text{I}][\ldots]\)\\
+                \(\mathit{S} \to [x_1\,?][\ldots] (S)\)
             };
         \end{scope}
         \node[olabel, above=of grules1.north west, anchor=west] (gruleslab) {grammar rules\strut};

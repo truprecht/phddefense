@@ -6,17 +6,17 @@
     \renewcommand{\uppervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {4}};}%
     \renewcommand{\lowervclause}{\tikz[tcomp]\node{VP} child {node{$x$}} child { node {$y$} child { node {5}}};}%
     \renewcommand{\whclause}{\tikz[tcomp]\node{WH} child {node{1}};}%
-    \renewcommand{\prtclause}{\tikz[tcomp]{\node(r) {$a^\downarrow$};\node[right=of r]{PRT} child {node{6}};}}%
-    \renewcommand{\nnclause}{\tikz[tcomp]\node{NP} child {node {$a^\downarrow$}} child {node{3}};}%
+    \renewcommand{\prtclause}{\tikz[tcomp]{\node(r) {\iparam{}};\node[right=of r]{PRT} child {node{6}};}}%
+    \renewcommand{\nnclause}{\tikz[tcomp]\node{NP} child {node {\iparam{}}} child {node{3}};}%
     %
     \begin{tikzpicture}[anchor=center, outer sep=0px, inner sep=1pt]
-        \node (root) {\(\mathit{Root} \to [x_1\,\text{2}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)\)}
-        [sibling distance=7em]
+        \node (root) {\(\mathit{S} \to [x_1\,\text{2}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)\)}
+        [sibling distance=7em,level distance=8ex]
         child { node (vp1) {\(V_2 \to [x_1, \text{4}\, x_2] \begin{bmatrix}\uppervclause{}\end{bmatrix} (V_2)\)}
             [sibling distance=6.5em]
-            child{ node[yshift=-2ex] (vp2) {\(V_2 \to [x_1, \text{5}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (V^L, V^R)\)}
-                child { node (term0) {\(V^L \to[\text{1}] \begin{bmatrix}\whclause{}\end{bmatrix}\)}}
-                child { node[xshift=2em] (term5) {\(V^R \to [\text{6}] \begin{bmatrix}\prtclause{}\end{bmatrix}\)}}}}
-        child { node[yshift=-6ex] (np) {\(N \to [\text{3}] \begin{bmatrix}\nnclause{}\end{bmatrix}\)}};
+            child{ node[yshift=-2ex] (vp2) {\(V_2 \to [x_1, \text{5}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (\mathrm{arg}(V), V\text{-}B)\)}
+                child { node (term0) {\(\mathrm{arg}(V) \to[\text{1}] \begin{bmatrix}\whclause{}\end{bmatrix}\)}}
+                child { node[xshift=2em] (term5) {\(V\text{-}B \to [\text{6}] \begin{bmatrix}\prtclause{}\end{bmatrix}\)}}}}
+        child { node[yshift=-5ex] (np) {\(N \to [\text{3}] \begin{bmatrix}\nnclause{}\end{bmatrix}\)}};
     \end{tikzpicture}
 \end{document}
