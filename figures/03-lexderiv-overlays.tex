@@ -1,14 +1,30 @@
 \documentclass[../slides]{subfiles}
 
 \begin{document}
-    \input{derivs/00-survey-lexderiv-commands.tex}%
     \begin{tikzpicture}[outer sep=0px, inner sep=1pt, >=stealth]
-        \visible<-13>{
-            \matrix (rule) [matrix of nodes, ampersand replacement=\&] {
-                \(S\) \& \(\to\) \& $[x_1\,\text{the}\,y_1\,x_2]$ \& $\begin{bmatrix}\rootclause{}\end{bmatrix}$ \& $(V_2, N)$\\
-            };
+        \visible<10,12>{
+            \begin{scope}[tcomp, level 2/.style={sibling distance=8ex}, level 3/.style={sibling distance=4ex}]
+                \node (tvalroot) {SBAR}
+                child {node {S}
+                    child{ node {VP}
+                        child {node[treeangle] (tvalleft) {}}
+                        child {node[treeangle,fill=gray] {}}}
+                    child{node {NP}
+                        child {node{PT}
+                            child {node (tvalthe) {the}}}
+                        child {node[treeangle,fill=black] (tvalright) {}}}};
+                \node[fit=(tvalroot) (tvalleft) (tvalright), inner sep=0pt, outer sep=0pt] (tval) {};
+            \end{scope}
         }
-        %        \node[above=of rule, visible on=<2-6>] (ntlab) {nonterminals};
+
+        \visible<8,12>{
+            \node[left=.5cm of tval.south west, font=\small, anchor=south east] (val) {$[$where the survey was carried out$]$};
+        }
+
+        \matrix[below=1cm of tval, xshift=-1cm] (rule) [matrix of nodes, ampersand replacement=\&] {
+            \(\alert<2>{S}\) \& \(\to\) \& $[\x_1 \, \text{the} \, \y_1 \, \x_2]$ \& $\begin{bmatrix}\rootclause{}\end{bmatrix}$ \& $(\alert<2>{V_2}, \alert<2>{N})$\\
+        };
+        
         \visible<3-6>{
             \node[above=of rule-1-1] (fo1) {\(\mathrm{fo}(S) = 1\)};
             \node[right=of fo1] (fo2) {\(\mathrm{fo}(V_2) = 2\)};
@@ -21,98 +37,60 @@
         \draw<5>[dashed, gray] (rule-1-3.20) edge[out=90, in=-90] (fo2);
         \draw<6>[dashed, gray] (rule-1-3.40) edge[out=90, in=-90] (fo3);
 
-
-        \visible<8,12>{
-            \node[below=.8cm of rule-1-3, font=\small, xshift=-1.2cm] (val) {$[$where the survey was carried out$]$};
-        }
-        \node[below=.8cm of rule-1-3, visible on=<8>, font=\small, xshift=-1.2cm] (val) {$[$where the survey was carried out$]$};
         \visible<7-8>{
-            %            \node[above=2cm of rule-1-3] (scomplab) {string tuple composition:};
-            \matrix[above=1.5cm of rule-1-3, font=\small] (args) [matrix of nodes, ampersand replacement=\&] {
+            \matrix[below=1.2cm of rule-1-3, font=\small] (args) [matrix of nodes, ampersand replacement=\&] {
                 $[$where, \& was carried out$]$, \& $[$survey$]$ \\
             };
-            \draw<7-8>[dashed, gray] (args-1-1) edge[out=-90, in=90,->] (rule-1-3.165);
-            \draw<7-8>[dashed, gray] (args-1-2) edge[out=-90, in=90,->] (rule-1-3.20);
-            \draw<7-8>[dashed, gray] (args-1-3) edge[out=-90, in=90,->] (rule-1-3.40);
+            \draw<7-8>[dashed, gray] (args-1-1) edge[out=90, in=-90,->] (rule-1-3.-165);
+            \draw<7-8>[dashed, gray] (args-1-2) edge[out=90, in=-90,->] (rule-1-3.-20);
+            \draw<7-8>[dashed, gray] (args-1-3) edge[out=90, in=-90,->] (rule-1-3.-40);
         }
-        \draw<8,12>[gray] (rule-1-3) edge[|->] (val.north-|rule-1-3);
+        \draw<8,12>[gray] (rule-1-3) edge[|->] (val.south);
 
-        \visible<10,12>{
-            \node[below=5mm of rule-1-4] (tval) {
-                \tikz[tcomp, level 2/.style={sibling distance=8ex}, level 3/.style={sibling distance=4ex}]
-                \node {SBAR}
-                child {node {S}
-                    child{ node {VP}
-                        child {node[triangle] {$t_1$}}
-                        child {node[triangle] {$t_2$}}}
-                    child{node {NP}
-                        child {node{PT}
-                            child {node {the}}}
-                        child {node[triangle] {$t_3$}}}};
-            };
-        }
+        
         \visible<9-10>{
-            %            \node[above=1.5cm of rule-1-4] (tcomplab) {tree string composition:};
-            \matrix[above=1cm of rule-1-4] (targs) [matrix of nodes, ampersand replacement=\&] {
-                \tikz[tcomp]\node{VP} child {node [triangle, yshift=-2ex, xshift=-1ex]{$t_1$}} child {node[triangle, yshift=-2ex] {$t_2$}}; \&
-                \tikz[tcomp]\node{NP} child {node {$\alpha$}} child {node[triangle, yshift=-2ex] {$t_3$}}; \\
-            };
+            \begin{scope}[tcomp]
+                \node[below=1cm of rule-1-4, xshift=-.5cm] (targs-1-1) {VP}
+                    child {node [treeangle]{}}
+                    child {node[treeangle, fill=gray] {}};
+                \node[below=1cm of rule-1-4, xshift=.5cm] (targs-1-2) {NP}
+                    child {node {$\iparam$}}
+                    child {node[treeangle, fill=black] {}};
+            \end{scope}
 
-            \draw<9-10>[dashed, gray] (targs-1-1) edge[out=-90, in=120,->] (rule-1-4);
-            \draw<9-10>[dashed, gray] (targs-1-2) edge[out=-90, in=60,->] (rule-1-4);
+            \draw<9-10>[dashed, gray] (targs-1-1) edge[out=90, in=-120,->] (rule-1-4);
+            \draw<9-10>[dashed, gray] (targs-1-2) edge[out=90, in=-60,->] (rule-1-4);
         }
         \draw<10,12>[gray] (rule-1-4) edge[|->] (tval);
 
-        \draw<11>[gray] (rule-1-3.-120) edge[dashed, <->, out=-90, in=-90] node[below] {alignment} (rule-1-4.-70);
-        \draw[gray, visible on=<12>] (val.-170) edge[dashed, <->, out=-90, in=-90] node[above right] {alignment} (tval.-70);
+        \draw<11,12>[red] (rule-1-3.-120) edge[dashed, <->, out=-90, in=-90] node[below] {alignment} (rule-1-4.-70);
+        \draw[red, visible on=<12>] (val.-170) edge[dashed, <->, out=-90, in=-90, looseness=.2] (tvalthe);
 
-
-        \node[above=7mm of rule-1-3, visible on=<13>] (targ21) {
-            \begin{tikzpicture}[tcomp, level 2/.style={sibling distance=8ex}, level 3/.style={sibling distance=4ex}]
-                \matrix[ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (snt) {where \& , \& was carried out\\ };
-                \node[above=4ex of snt-1-2] {VP}
-                child {node[triangle, above=0cm of snt-1-1] {$t_1$}}
-                child {node[triangle, above=0cm of snt-1-3] {$t_2$}};
-            \end{tikzpicture}
-        };
-        \node[right=5mm of targ21, visible on=<13>] (targ22) {
-            \begin{tikzpicture}[tcomp, anchor=center]
-                \matrix[ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (snt) {survey \\ };
-                \node[above=4ex of snt, xshift=-1ex] {NP}
-                child {node[above=of snt-1-2.north]{\iparam}}
-                child {node[triangle, above=0cm of snt-1-1] {$t_3$}};
-            \end{tikzpicture}
-        };
-        \draw<13>[gray] (targ21)  edge[dashed, ->] (rule-1-3);
-        \draw<13>[gray] (targ22)  edge[dashed, ->] (rule-1-4);
-
-        \node[below=5mm of rule-1-4, visible on=<13>] (tval2) {
-            \begin{tikzpicture}[tcomp, level 2/.style={sibling distance=8ex}, level 3/.style={sibling distance=4ex}]
-                \matrix[ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (snt) {where \& the \& survey \& was carried out\\ };
-                \node[above=12.5ex of snt-1-2] {SBAR}
-                child {node {S}
-                    child{ node[xshift=1.5] {VP}
-                        child {node[triangle, above=0cm of snt-1-1] {$t_1$}}
-                        child {node[triangle, above=0cm of snt-1-4] {$t_2$}}}
-                    child{node[yshift=-2.5ex, xshift=-1.5ex] {NP}
-                        child[color=black] {node[above=of snt-1-2.north]{PT}}
-                        child[color=black] {node[triangle, above=0cm of snt-1-3] {$t_3$}}
-                        edge from parent[double=black, color=white]}};
-            \end{tikzpicture}
-        };
-        \draw<13>[gray] (rule-1-3) edge[|->] (tval2.130);
-        \draw<13>[gray] (rule-1-4) edge[|->] (tval2.120);
-
-        \visible<14->{
-            \node[text height=1cm, text width=8cm] (root) at (args-1-2) {\(\mathit{S} \to \alt<-19>{[x_1\,\text{the}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)}{\rooteval{}}\)}
-            [sibling distance=14em]
-            child[visible on=<-19>] { node[visible on=<14->] (vp1) {\(V_2 \to \alt<-17>{[x_1, \text{was}\, x_2] \begin{bmatrix}\uppervclause{}\end{bmatrix} (V_2)}{\upperveval{}}\)}
-                [sibling distance=6.5em]
-                child[visible on=<-17>] { node (vp2) {\(V_2 \to \alt<-16>{[x_1, \text{carried}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (\mathrm{arg}(V), V\text{-}B)}{\lowerveval{}}\)}
-                    child[visible on=<14-16>] { node[text width=4cm] (term0) {\(\mathrm{arg}(V) \to \alt<-14>{[\text{where}] \begin{bmatrix}\whclause{}\end{bmatrix}}{\wheval{}}\)}}
-                    child[visible on=<-16>] { node[visible on=<13->, text width=4cm, xshift=6em] (term5) {\(V\text{-}B \to \alt<-15>{[\text{out}] \begin{bmatrix}\prtclause{}\end{bmatrix}}{\prteval{}}\)}}}
-                edge from parent[alt=<-13>{color=white}{color=black}]}
-            child[visible on=<14-19>] { node[text width=4cm] (np) {\(N \to \alt<-18>{[\text{survey}] \begin{bmatrix}\nnclause{}\end{bmatrix}}{\nneval{}}\)}};
+        \visible<13>{
+            \matrix[below=2cm of rule-1-3, xshift=-1cm, ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (sntwhere) {where \& , \& was carried out\\ };
+            \matrix[right=of sntwhere, ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (sntsurvey) {survey \\ };
+            \matrix[above=1cm of rule-1-3, ampersand replacement=\&, matrix of nodes, every node/.style={inner sep=0pt, outer sep=0pt, font=\strut\scriptsize}, column sep=5pt] (sntresult) {where \& the \& survey \& was carried out\\ };
+            \begin{scope}[tcomp]
+                \node[above=4ex of sntwhere-1-2] (targ21) {VP}
+                    child {node[treeangle, above=1.5ex of sntwhere-1-1] {}}
+                    child {node[treeangle, above=1.5ex of sntwhere-1-3, fill=gray] {}};
+                \node[above=4ex of sntsurvey, xshift=-1ex] (targ22) {NP}
+                    child {node[treeangle, above=1.5ex of sntsurvey-1-1, fill=black] (sntsurvey-treeangle) {}}
+                    child {node[left=of sntsurvey-treeangle, xshift=-2ex]{\iparam{}}};
+                \node[above=11.5ex of sntresult-1-2] (tval2-0) {SBAR}
+                    child {node {S}
+                        child{ node[xshift=1.5] {VP}
+                            child {node[treeangle, above=1.5ex of sntresult-1-1] (tval2-1) {}}
+                            child {node[treeangle, above=1.5ex of sntresult-1-4, fill=gray] {}}}
+                        child{node[yshift=-2.5ex] {NP}
+                            child[color=black] {node[above=of sntresult-1-2.north]{PT}}
+                            child[color=black] {node[treeangle, above=1.5ex of sntresult-1-3, fill=black] (tval2-2) {}}
+                            edge from parent[double=black, color=white]}};
+            \end{scope}
         }
+        \node[fit=(tval2-0) (tval2-1) (tval2-2)] (tval2) {};
+        \draw<13>[gray] (targ21)  edge[dashed, ->] (rule);
+        \draw<13>[gray] (targ22)  edge[dashed, ->] (rule);
+        \draw<13>[gray] (rule) edge[|->] (sntresult);
     \end{tikzpicture}
 \end{document}

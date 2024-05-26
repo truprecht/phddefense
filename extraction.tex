@@ -1,0 +1,40 @@
+\documentclass[slides]{subfiles}
+
+\begin{document}
+    \begin{frame}{Lexicalized Rule Extraction}
+        \resizebox{\linewidth}{!}{%
+        \begin{tikzpicture}[remember picture]
+            \node[scale=0.8] (ctree) {\subfile{figures/ctrees/01-survey.tex}};
+
+            \visible<2->{
+                \node[scale=0.8, below=of ctree.south east, anchor=north] (bintree) {
+                    \subfile{figures/ctrees/04.1-survey-unbinarized.tex}
+                };
+            }
+
+            \visible<4->{
+                \node[scale=0.8, right=of ctree] (guidetree) {
+                    \subfile{figures/ctrees/05.1-survey-headguide.tex}
+                };
+            }
+
+            \node[right=of bintree, font=\scriptsize] (rulelist) {\begin{tabular}{lll}
+                \visible<7->{where &  WRB & $W \to [\alt<-11|handout:0>{1}{\wildcard{}}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{WH} child { node {\alt<-11|handout:0>{1}{\wildcard{}}}};\end{bmatrix}$} \\[2mm]
+                \visible<11->{the & PT & $\text{a}(N) \to [\alt<-11|handout:0>{2}{\wildcard{}}][\alt<-11|handout:0>{2}{\wildcard{}}]$} \\[2mm]
+                \visible<11->{survey &  NN & $N \to [x_1\alt<-11|handout:0>{3}{\wildcard{}}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{NP} child {node {x}} child { node {\alt<-11|handout:0>{3}{\wildcard{}}}};\end{bmatrix}$(\text{a}(N))} \\[2mm]
+                \visible<8->{was &  VBD & $S \to [\visible<9->{x_1}\visible<10->{y_1}\alt<-11|handout:0>{4}{\wildcard{}}\visible<9->{x_2}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child { node {VP} child { node {x}} child { node {\alt<-11|handout:0>{4}{\wildcard{}}}}} child {node {y}}};\end{bmatrix}(V, N)$
+                } \\[4mm]
+                \visible<11->{carried &  VBN & $V \to [x_1,\alt<-11|handout:0>{5}{\wildcard{}}\y_1]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{VP} child {node {x}} child { node {\alt<-11|handout:0>{5}{\wildcard{}}}} {child {node {y}}};\end{bmatrix}(W, P)$} \\[2mm]
+                \visible<11->{out &  RP & $P \to [\alt<-11|handout:0>{6}{\wildcard{}}]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{PRT} child { node {\alt<-11|handout:0>{6}{\wildcard{}}}};\end{bmatrix}$}\\
+            \end{tabular}};
+
+
+            \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth]
+                \draw[visible on=<2->] (ctree.-110) edge[bend right, ->] node[left, alarm on=<17|handout:0>] {rank transformation:\\$\bullet$\,type (binarization, head-inward)\\$\bullet$\,direction\\$\bullet$\,markovzation} (bintree.west);
+                \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right, alarm on=<18|handout:0>] {assign guide values\\$\bullet$\,guide constructor} (guidetree);
+                \draw[visible on=<6->] (guidetree.-30) edge[bend left, ->] node[above right, alarm on=<19|handout:0>] {rule extraction\\$\bullet$\,grammar formalism\\$\bullet$\,nonterminal constructor} (rulelist);
+            \end{scope}
+        \end{tikzpicture}%
+        }
+    \end{frame}
+\end{document}

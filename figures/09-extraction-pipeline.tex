@@ -1,7 +1,6 @@
 \documentclass[../slides]{subfiles}
 
 \begin{document}
-    \input{derivs/00-survey-lexderiv-commands.tex}
     \begin{tikzpicture}[remember picture]
         \node[scale=0.8] (ctree) {\subfile{ctrees/01-survey.tex}};
 
@@ -30,8 +29,8 @@
 
 
         \begin{scope}[dashed, gray, every node/.style={font=\scriptsize, align=left}, >=stealth]
-            \draw[visible on=<2->] (ctree.-100) edge[bend right, ->] node[left, alarm on=<17|handout:0>] {binarization:\\$\bullet$\,type (l2r, ho, r2l)\\$\bullet$\,markovzation } (bintree.west);
-            \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right, alarm on=<18|handout:0>] {add guide values\\$\bullet$\,guide constructor} (guidetree);
+            \draw[visible on=<2->] (ctree.-100) edge[bend right, ->] node[left, alarm on=<17|handout:0>] {rank transformation:\\$\bullet$\,type (binarization, head-inward)\\$\bullet$\,markovzation} (bintree.west);
+            \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend left, ->] node[right, alarm on=<18|handout:0>] {assign guide values\\$\bullet$\,guide constructor} (guidetree);
             \draw[visible on=<6->] (guidetree.-30) edge[bend left, ->] node[above right, alarm on=<19|handout:0>] {rule extraction\\$\bullet$\,nonterminal constructor} (rulelist);
         \end{scope}
     \end{tikzpicture}

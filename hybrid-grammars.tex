@@ -1,0 +1,36 @@
+\documentclass[slides]{subfiles}
+
+\begin{document}
+    \begin{frame}{Hybrid Grammars \citep{Ned14}}
+        \begin{minipage}{.58\linewidth}
+            \begin{overprint}
+                \onslide<-13>
+                    \resizebox{\linewidth}{!}{
+                        \subfile{figures/03-lexderiv-overlays}}
+                \onslide<14->
+                    \resizebox{\linewidth}{!}{
+                        \subfile{figures/03.1-derivation}}
+            \end{overprint}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{.4\linewidth}
+            \begin{itemize}
+                \item rule structure
+                    \begin{itemize}
+                        \item \alert<2>{nonterminals} + \alert<3-6>{assigned fanout}
+                        \item \alert<4-12>{compositions} + \alert<11-12>{alignment}
+                            \begin{itemize}
+                                \item[(a)] \alert<4-8>{over string tuples}
+                                \item[(b)] \alert<9-10>{over (consecutive) tree (context) sequences}
+                            \end{itemize}
+                        \item<13-> \alert<13>{\(\approx\) function over constituent trees}
+                    \end{itemize}
+                \item<21-> parsing:
+                \begin{itemize}
+                    \item find derivation via (a)
+                    \item comp.\@ constituent tree via (b)
+                \end{itemize}
+            \end{itemize}
+        \end{minipage}
+    \end{frame}
+\end{document}

@@ -3,7 +3,7 @@
 \usepackage{booktabs, libertinus, subfiles, tikz, colortbl, multirow, natbib, varwidth}
 \usetikzlibrary{positioning, matrix, fit, decorations, shapes, shapes.misc, decorations.pathreplacing, calc, backgrounds}
 \input{figureconf}
-
+\input{figures/derivs/00-survey-lexderiv-commands.tex}
 
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}{%
@@ -19,13 +19,13 @@
 \setbeamertemplate{itemize subitem}{--}
 
 \title{On the Extraction of Lexicalized Grammars\\and Parsing via Supertagging\\for Discontinuous Constituent Structures}
-\subtitle{Status talk}
+\subtitle{Phd defense}
 \newcommand{\theemails}{%
     \href{thomas.ruprecht@tu-dresden.de}{thomas.ruprecht@tu-dresden.de}%
 }
 \author{\texorpdfstring{Thomas Ruprecht\\{\small \theemails}}{Thomas Ruprecht}}
 \institute{Institute for Theoretical Computer Science\\Faculty of Computer Science\\Technische Universität Dresden, Germany}
-\date{Mai 9, 2023}
+\date{June 5, 2024}
 
 %\includeonlyframes{working}
 \begin{document}
@@ -37,153 +37,88 @@
         \tableofcontents
     \end{frame}
 
-    \section{Introdcution}
-    \begin{frame}[label=working]{(Discontinuous) Constituency Trees}
-        \begin{minipage}{.4\linewidth}
-            \resizebox{\linewidth}{!}{
-                \subfile{figures/01-ctree-annotations}}
-        \end{minipage}
-        \begin{minipage}{.58\linewidth}
-            \begin{itemize}
-                \item<+-> syntactic structure of natural language
-                \begin{itemize}
-                    \item<+-> lowest level: sentence
-                    \item<+-> 2\(^\text{nd}\) lowest: part-of-speech tags
-                    \item<+-> remainder: constituent symbols
-                \end{itemize}
-                \item<+-> discontinuity = non consecutive regions
-                {\scriptsize\centering\begin{tabular}{llc}
-                    \toprule
-                    corpus & language & disc.\@ sent.\@ \\% & disc.\@ nodes \\
-                    \midrule
-                    DPTB  \citep{EvaKal11} & eng      & $\approx$ 20\% \\
-%                    Lassy \citep{Noord09}  & nl       &               \\
-                    NeGra \citep{Skut98}   & ger      & $\approx$ 27\% \\
-                    Tiger \citep{Brants04} & ger      & $\approx$ 27\% \\
-                    \bottomrule
-                \end{tabular}}
-                \item<+-> parsing = prediction of structure for sentence
-                \item<+-> building block in higher-level NLP tasks, e.g.\@
-                \begin{itemize}
-                    \item translation \citep{Zhang19, Yang22}
-                    \item relation extraction \citep{Nguyen19}
-                    \item summarization \citep{Balachandran21}
-                \end{itemize}
-            \end{itemize}
-        \end{minipage}
-    \end{frame}
+    \section{Introduction}
+    \subfileinclude{introduction.tex}
+    \subfileinclude{hybrid-grammars.tex}
+    \subfileinclude{parsing-pipeline.tex}
 
-    \begin{frame}<2->{Hybrid Grammars \citep{Ned14}}
-        \begin{minipage}{.58\linewidth}
-%            \begin{overprint}
-%                \onslide<-13>{\resizebox{\linewidth}{!}{
-%                        \subfile{figures/13-hybrid-grammar}}}
-%                \onslide<14->{%
-                    \resizebox{\linewidth}{!}{
-                        \subfile{figures/03-lexderiv-overlays}}%}
-%            \end{overprint}
-        \end{minipage}
-    \hfill
-        \begin{minipage}{.4\linewidth}
-            \begin{itemize}
-                \item rule structure
-                    \begin{itemize}
-                        \item \alert<2>{nonterminals} + \alert<3-6>{assigned fanout}
-                        \item \alert<4-12>{compositions} + \alert<11-12>{alignment}
-                            \begin{itemize}
-                                \item[(a)] \alert<4-8>{over string tuples}
-                                \item[(b)] \alert<9-10>{over (consecutive) tree (context) sequences}
-                            \end{itemize}
-                        \item<13-> \alert<13>{\(\approx\) function over constituent trees}
-                    \end{itemize}
-                \item<21-> parsing:
-                \begin{itemize}
-                    \item find derivation via (a)
-                    \item comp.\@ constituent tree via (b)
-                \end{itemize}
-            \end{itemize}
-        \end{minipage}
-    \end{frame}
-
-    \begin{frame}<1-6>{A Traditional Parsing Pipeline (I)}
-        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
-    \end{frame}
-
-    \begin{frame}{A Traditional Parsing Pipeline (II)}
-        \centering
-        \subfile{tables/01-traditional-parsers.tex}
-    \end{frame}
-
-    %% Intro to lexicalized rule extraction
-    \begin{frame}<9-14>{A Supertagging-based Parsing Pipeline \citep{bangalore1999supertagging}}
-        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
-    \end{frame}
-
-
-    \section{Lexicalized Rule extraction}
-    \begin{frame}<-17>{Lexicalized Rule Extraction \citep{Rup22}}
-        \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
-    \end{frame}
-
-    \begin{frame}<21->{Lexicalized Rule Extraction: Binarization \citep{KalMai13}}
-        \resizebox{\linewidth}{!}{\subfile{figures/10-binarization.tex}}
-    \end{frame}
-
-    \begin{frame}<17,18>{Lexicalized Rule Extraction}
-    \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
-    \end{frame}
-
-    \begin{frame}<21->{Lexicalized Rule Extraction: Guide Constructors}
-        \centering
-        \resizebox{!}{.9\textheight}{\subfile{figures/11-guides.tex}}
-    \end{frame}
-
-    \begin{frame}<18,19>{Lexicalized Rule Extraction}
-        \resizebox{\linewidth}{!}{\subfile{figures/09-extraction-pipeline.tex}}
-    \end{frame}
+    \section{Contributions}
+    \subfileinclude{contributions.tex}
+    
+    \section{Lexicalized Rule Extraction}
+    \subfileinclude{extraction.tex}
+    \subfileinclude{guides.tex}
 
     \begin{frame}<21->{Lexicalized Rule Extraction: Nonterminal Constructors}
         \resizebox{\linewidth}{!}{\subfile{figures/12-nonterminals.tex}}
     \end{frame}
 
-
-    %% Intro to prediction models
-    \begin{frame}<14,15>{A Supertagging-based Parsing Pipeline}
-        \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
-    \end{frame}
-
-    \section{Neural Prediction Models}
-    \begin{frame}{Neural Prediction Models}
+    \section{Experiments}
+    \begin{frame}{Experimental Setup}
 %        \begin{minipage}{.5\linewidth}
             \begin{itemize}
-                \item<+-> pretrained transformer models \citep[semi-supervised;][]{vaswani2017attention, Devlin2019}
+                \item<+-> three treebanks
                 \begin{itemize}
-                    \item used as off-the-shelf encoding
-                    \item decoding via feed-forward layers
-                    \item fine-tuning with extracted supertags + pos tags
-                    \item used in s.o.t.a. models in various tasks including parsing \citep{Cor20, FerGom22,Coa21, Sun22}
+                    \item NEGRA (German)
+                    \item TIGER (German)
+                    \item DPTB (English)
+                    \item each with training, development and test portions
                 \end{itemize}
-                \item<+-> architecture without pretraining (supervised)
+                \item<+-> three neural prediction models
                 \begin{itemize}
-                    \item fresh word + character-based embeddings
-                    \item encoding via bidrectional LSTM \citep{Hoc97} layers
-                    \item decoding via feed-forward layers
-                    \item training from ground up with extracted data
-                    \item established in supertagging and parsing \citep{vaswani2016supertagging, Cor20, StaSte20}
+                    \item supervised (fresh embeddings and LSTM layers)
+                    \item pretrained (BERT-base, BERT-large or equivalent)
+                \end{itemize}
+                \item<+-> grid search for extraction and parsing parameters
+                \begin{itemize}
+                    \item 70 extraction and 48 parsing configurations per model in NEGRA
+                    \item 20 extraction and 12 parsing configurations per model in TIGER and DPTB
+                \end{itemize}
+                \item<+-> final results using best configuration per prediction model and treebank
+                \begin{itemize}
+                    \item average parsing scores for multiple random initializations per prediction model and treebank
                 \end{itemize}
             \end{itemize}
 %        \end{minipage}
     \end{frame}
 
+    % %% Intro to prediction models
+    % \begin{frame}<14,15>{A Supertagging-based Parsing Pipeline}
+    %     \resizebox{\linewidth}{!}{\subfile{figures/08-pipeline-overlays.tex}}
+    % \end{frame}
 
-    \section{Experimental Evaluation and Results}
-    \begin{frame}{Extraction Parameters: Guide and Nonterminal Constructors (in NeGra)}
-        \subfile{tables/02-guides-nonterminals.tex}
-    \end{frame}
+%     \section{Neural Prediction Models}
+%     \begin{frame}{Neural Prediction Models}
+% %        \begin{minipage}{.5\linewidth}
+%             \begin{itemize}
+%                 \item<+-> pretrained transformer models \citep[semi-supervised;][]{vaswani2017attention, Devlin2019}
+%                 \begin{itemize}
+%                     \item used as off-the-shelf encoding
+%                     \item decoding via feed-forward layers
+%                     \item fine-tuning with extracted supertags + pos tags
+%                     \item used in s.o.t.a. models in various tasks including parsing \citep{Cor20, FerGom22,Coa21, Sun22}
+%                 \end{itemize}
+%                 \item<+-> architecture without pretraining (supervised)
+%                 \begin{itemize}
+%                     \item fresh word + character-based embeddings
+%                     \item encoding via bidrectional LSTM \citep{Hoc97} layers
+%                     \item decoding via feed-forward layers
+%                     \item training from ground up with extracted data
+%                     \item established in supertagging and parsing \citep{vaswani2016supertagging, Cor20, StaSte20}
+%                 \end{itemize}
+%             \end{itemize}
+% %        \end{minipage}
+%     \end{frame}
 
-    \begin{frame}{Extraction Parameters: Binarization and Markovization (in NeGra)}
-        \subfile{tables/03-binarization.tex}
-    \end{frame}
+
+%     \section{Experimental Evaluation and Results}
+%     \begin{frame}{Extraction Parameters: Guide and Nonterminal Constructors (in NeGra)}
+%         \subfile{tables/02-guides-nonterminals.tex}
+%     \end{frame}
+
+%     \begin{frame}{Extraction Parameters: Binarization and Markovization (in NeGra)}
+%         \subfile{tables/03-binarization.tex}
+%     \end{frame}
 
     \begin{frame}{Results: Semi-Supervised Models \citep{Rup22}}
         \defcitealias{FerGom22}{Fern{\'a}ndez-G., G{\'o}mez-R., 2022}

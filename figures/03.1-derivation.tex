@@ -1,0 +1,23 @@
+\documentclass[../slides]{subfiles}
+
+\begin{document}
+    \begin{tikzpicture}[level distance=2cm]
+        \node[visible on=<-19>, xshift=-1cm] (root) {\(\mathit{S} \to [x_1\,\text{the}\,y_1\,x_2]\begin{bmatrix}\rootclause{}\end{bmatrix} (V_2, N)\)}
+        [sibling distance=14em]
+        child[visible on=<-19>] { node[visible on=<-17>] (vp1) {\(V_2 \to [x_1, \text{was}\, x_2] \begin{bmatrix}\uppervclause{}\end{bmatrix} (V_2)\)}
+            [sibling distance=6.5em]
+            child[visible on=<-17>] { node[visible on=<-16>] (vp2) {\(V_2 \to [x_1, \text{carried}\, y_1] \begin{bmatrix}\lowervclause{}\end{bmatrix} (\mathrm{arg}(V), V\text{-}B)\)}
+                child[visible on=<-16>] { node[visible on=<-14>] (term0) {\(\mathrm{arg}(V) \to [\text{where}] \begin{bmatrix}\whclause{}\end{bmatrix}\)}}
+                child[visible on=<-16>] { node[visible on=<-15>, xshift=6em] (term5) {\(V\text{-}B \to [\text{out}] \begin{bmatrix}\prtclause{}\end{bmatrix}\)}}}}
+        child[visible on=<-19>] { node[visible on=<-18>] (np) {\(N \to [\text{survey}] \begin{bmatrix}\nnclause{}\end{bmatrix}\)}};
+
+        \begin{scope}
+            \node[visible on=<20->] at (root) {\(\mathit{S} \to \begin{bmatrix}\rooteval{}\end{bmatrix}\)};
+            \node[visible on=<18-19>] at (vp1) {\(V_2 \to \begin{bmatrix}\upperveval{}\end{bmatrix}\)};
+            \node[visible on=<17-17>] at (vp2) {\(V_2 \to \begin{bmatrix}\lowerveval{}\end{bmatrix}\)};
+            \node[visible on=<15-16>] at (term0) {\(\mathrm{arg}(V) \to \begin{bmatrix}\wheval{}\end{bmatrix}\)};
+            \node[visible on=<16-16>] at (term5) {\(V\text{-}B \to \begin{bmatrix}\prteval{}\end{bmatrix}\)};
+            \node[visible on=<19-19>] at (np) {\(N \to \begin{bmatrix}\nneval{}\end{bmatrix}\)};
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

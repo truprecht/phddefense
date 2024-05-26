@@ -1,0 +1,39 @@
+\documentclass[slides]{subfiles}
+
+\begin{document}
+    \begin{frame}[label=working]{(Discontinuous) Constituency Trees}
+        \begin{minipage}{.4\linewidth}
+            \resizebox{\linewidth}{!}{
+                \subfile{figures/01-ctree-annotations}}
+        \end{minipage}
+        \begin{minipage}{.58\linewidth}
+            \begin{itemize}
+                \item<+-> syntactic structure of natural language
+                \begin{itemize}
+                    \item<+-> lowest level: sentence
+                    \item<+-> 2\(^\text{nd}\) lowest: part-of-speech (POS) tags
+                    \item<+-> remainder: constituent symbols
+                \end{itemize}
+                \item<+-> discontinuity = non consecutive regions
+                {\scriptsize\centering\begin{tabular}{llc}
+                    \toprule
+                    corpus & lang. & disc.\\% & disc.\@ nodes \\
+                    \midrule
+                    CGN \citep{hoekstra2001syntactic} & Nl.      & ?? \\
+                    DPTB  \citep{EvaKal11} & Eng.      & $\approx$ 20\% \\
+                    LASSY \citep{Noord09} & Nl.      & ?? \\
+                    NEGRA \citep{Skut98}   & Ger.      & $\approx$ 27\% \\
+                    TIGER \citep{Brants04} & Ger.      & $\approx$ 27\% \\
+                    \bottomrule
+                \end{tabular}}
+                \item<+-> parsing = prediction of structure for sentence
+                \item<+-> building block in higher-level NLP tasks, e.g.\@
+                \begin{itemize}
+                    \item translation \citep{Zhang19, Yang22}
+                    \item relation extraction \citep{Nguyen19}
+                    \item summarization \citep{Balachandran21}
+                \end{itemize}
+            \end{itemize}
+        \end{minipage}
+    \end{frame}
+\end{document}
