@@ -7,15 +7,15 @@
              \(\text{constituent}_{\text{orig. fanout}>1}^{[\text{fanout change}]}\) \&
              \(\text{topmost constituent}_{\text{fanout}>1}\) \&
              \(\text{first letter}_{\text{fanout}>1}\) \\
-            |[visible on=<24->, alarm on=<24>]| SBAR+S \&
-            |[visible on=<23->, alarm on=<23>]| SBAR \&
-            |[visible on=<22->, alarm on=<22>]| S \\
-            |[visible on=<27->, alarm on=<27>]| VP$_2^{0}$ \&
-            |[visible on=<26->, alarm on=<26>]| VP$_2$ \&
-            |[visible on=<25->, alarm on=<25>]| V$_2$ \\
-            |[visible on=<30->, alarm on=<30>]| VP$_2^{-1}$ \&
-            |[visible on=<29->, alarm on=<29>]| VP \&
-            |[visible on=<28->, alarm on=<28>]| V \\
+            |[visible on=<22->]| SBAR+S \&
+            |[visible on=<22->]| SBAR \&
+            |[visible on=<22->]| S \\
+            |[visible on=<23->]| VP$_2^{0}$ \&
+            |[visible on=<23->]| VP$_2$ \&
+            |[visible on=<23->]| V$_2$ \\
+            |[visible on=<24->]| VP$_2^{-1}$ \&
+            |[visible on=<24->]| VP \&
+            |[visible on=<24->]| V \\
         };
 
         \node[scale=0.7, below=3mm of guides] (strictguide) {
@@ -36,9 +36,9 @@
                     where \& the  \& survey     \& was \& carried     \& out   \\
                 };
 
-                \node[above=17ex of pos, xshift=-8ex, alarm on=<22-24>] (sbar) {SBAR+S}
-                child { node[alarm on=<25-27>] (vp1) {VP}
-                    child { node[alarm on=<28-30>] (vp2) {VP}
+                \node[above=17ex of pos, xshift=-8ex, alarm on=<22>] (sbar) {SBAR+S}
+                child { node[alarm on=<23>] (vp1) {VP}
+                    child { node[alarm on=<24>] (vp2) {VP}
                         child { node[above=0ex of pos-1-1] (wrb) {1}}
                         child { node[xshift=1ex] (vpbin) {VP-B}
                             child { node[above=0ex of pos-1-5] (term4) {5}}
@@ -60,12 +60,12 @@
                 \end{scope}
 %
                 \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, gray]
-                    \node[alarm on=<22-27>, left=of vp1] {1};
-                    \node[alarm on=<22-24>, right=of np] {2};
-                    \node[alarm on=<22-24>] at (term2) {\phantom{3}};
-                    \node[alarm on=<22-24>, right=of sbar] {4};
-                    \node[alarm on=<22-30>, left=of vp2] {5};
-                    \node[alarm on=<22-30>, left=of vpbin] {6};
+                    \node[alarm on=<22-23>, left=of vp1] {1};
+                    \node[alarm on=<22>, right=of np] {2};
+                    \node[alarm on=<22>] at (term2) {\phantom{3}};
+                    \node[alarm on=<22>, right=of sbar] {4};
+                    \node[alarm on=<22-24>, left=of vp2] {5};
+                    \node[alarm on=<22-24>, left=of vpbin] {6};
                 \end{scope}
         \end{tikzpicture}};
     \end{tikzpicture}
