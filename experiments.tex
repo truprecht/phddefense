@@ -1,0 +1,206 @@
+\documentclass[slides]{subfiles}
+
+\begin{document}
+    \newcommand{\staglist}[2][4cm]{\tikz[every node/.style={text width=#1, draw, rounded corners, line width=.3mm, font=\tiny}]{%
+        \node[fill=black!40] (stag1) {\vphantom{\strut $V^L\xrightarrow{0.2}$}};
+        \node[fill=black!20, below right=.1cm of stag1.north west, anchor=north west] (stag2) {\vphantom{\strut $V^L\xrightarrow{0.2}$}};
+        \node[fill=black!5, below right=.1cm of stag2.north west, anchor=north west, align=center] {\strut #2};}}
+    \tikzset{,
+        boundingbox/.style={inner sep=0pt, outer sep=0pt},
+        olabel/.style={gray, inner sep=0pt},
+        obox/.style={draw, rectangle, rounded corners, line width=.3mm, align=left}
+    }
+    \begin{frame}{Experimental Setup}
+        \visible<2>{\begin{tikzpicture}[font=\small, node distance=1em, transform canvas={scale=0.6, xshift=15cm, yshift=-4.6cm}]
+            \node[olabel] (treebanklab) {treebank\strut};
+            \begin{scope}[every node/.style={scale=0.4, obox}]
+                \node[below=.3cm of treebanklab.west, anchor=north west, fill=black!40] (ctree1) {\subfile{figures/ctrees/03-what.tex}};
+                \node[below right=.3cm of ctree1.north west, anchor=north west, fill=black!20] (ctree2) {\subfile{figures/ctrees/03-what.tex}};
+                \node[below right=.3cm of ctree2.south east, anchor=south east, fill=black!2] (ctree3) {\subfile{figures/ctrees/03-what.tex}};
+            \end{scope}
+            \node[fit=(treebanklab) (ctree1) (ctree3), boundingbox] (treebank) {};
+
+            \node[right=.7cm of treebank] (extraction) {\rotatebox{90}{extraction}};
+            \coordinate (extractionboxn) at (treebank.north -| extraction);
+            \coordinate (extractionboxs) at (treebank.south -| extraction);
+            \node[process, fit=(extraction) (extractionboxn) (extractionboxs)] (extractionbox) {};
+
+            \begin{scope}[every node/.style={obox, scale=0.35}]
+                \node[fill=black!40, right=0.5cm of extractionbox] (rules1) {%
+                    \begin{tabular}{lll}
+                        What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
+                        should &MD& \(S \to \ldots\)\\
+                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        do &VB& \(V_2 \to \ldots\)\\
+                    \end{tabular}};
+                \node[below right=.3cm of rules1.north west, anchor=north west, fill=black!20] (rules2) {%
+                    \begin{tabular}{lll}
+                        What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
+                        should &MD& \(S \to \ldots\)\\
+                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        do &VB& \(V_2 \to \ldots\)\\
+                    \end{tabular}};
+                \node[below right=.3cm of rules2.south east, anchor=south east, fill=black!2] (rules3) {%
+                    \begin{tabular}{lll}
+                        What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
+                        should &MD& \(S \to \ldots\)\\
+                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        do &VB& \(V_2 \to \ldots\)\\
+                    \end{tabular}};
+            \end{scope}
+            \node[olabel, anchor=west] (ruleslab) at (treebanklab-|rules1.west) {blueprints\strut};
+            \node[fit=(ruleslab) (rules1) (rules3), boundingbox] (rules) {};
+
+            \node[right=.7cm of rules.east|-extraction] (mle) {\rotatebox{90}{training}};
+            \coordinate (mleboxn) at (treebank.north -| mle);
+            \coordinate (mleboxs) at (treebank.south -| mle);
+            \node[process, fit=(mle) (mleboxn) (mleboxs), outer sep=0pt] (mlebox) {};
+
+            \node[olabel, anchor=south west, align=left, xshift=.5cm, align=left, alarm on=<2>] (modellab) at (mle.east |- treebanklab.south) {prediction\\models\strut};
+            \node[anchor=west, yshift=-1.5cm, fill=black, obox, rounded corners=2pt, alarm on=<2>] (stagmodel) at (modellab.south west) {\textcolor{black}{S}};
+            \node[anchor=east, yshift=-0.5cm, fill=black, obox, rounded corners=2pt, alarm on=<2>] (posmodel) at (modellab.south east) {\textcolor{black}{P}};
+
+            \begin{scope}[every path/.style={dashed, gray, ->}, >=stealth]
+                \draw (treebank-|ctree2.east) -- (extractionbox.west|-treebank);
+
+                \draw (extractionbox.east|-rules) -- (rules1.west|-rules);
+                \draw (rules-|rules2.east) -- (mlebox.west|-rules);
+
+                \draw (mlebox.east|-stagmodel) -- (stagmodel.west);
+                \draw (mlebox.east|-posmodel) -- (posmodel.west);
+            \end{scope}
+
+
+            \begin{scope}[every node/.style={anchor=west, inner sep=0pt, outer sep=0pt, font=\small}]
+                \matrix[below=2cm of treebank, xshift=-7cm] (term) [matrix of math nodes,nodes in empty cells, row sep=5pt] {
+                    \strut \text{what}        \\
+                    \strut \text{should}  \\
+                    \strut \text{I}       \\
+                    \strut \text{do}\\
+                };
+            \end{scope}
+            \node[gray, inner sep=0pt, above=.4cm of term.north west, anchor=west] (sentence) {sentence};
+            \node[fit=(term) (sentence), inner sep=0pt] (sentencebox) {};
+
+            \node[right=.5cm of sentencebox] (tagger) {\rotatebox{90}{supertagger}};
+            \coordinate (taggerboxn) at (sentencebox.north -| tagger);
+            \coordinate (taggerboxs) at (sentencebox.south -| tagger);
+            \node[process, fit=(tagger) (taggerboxn) (taggerboxs)] (taggerbox) {};
+
+            \begin{scope}[every node/.style={anchor=west, inner sep=0pt, outer sep=0pt, font=\scriptsize}]
+                \matrix[right=2cm of term] (stag) [matrix of nodes,nodes in empty cells,row sep=3pt] {
+                    \staglist[1.2cm]{$\mathrm{a}(V) \xrightarrow{0.6} \ldots$} \\
+                    \staglist[1.2cm]{$\mathit{S} \xrightarrow{0.57}  \ldots$}\\
+                    \staglist[1.2cm]{$N \xrightarrow{0.8} \ldots$}\\
+                    \staglist[1.2cm]{$V_2 \xrightarrow{0.55}  \ldots$}\\
+                };
+            \end{scope}
+            \node[gray, anchor=south west, inner sep=0pt, align=left] (staglab) at (stag.west|-sentence.south) {supertags\\+ confidence};
+            \node[boundingbox, fit=(stag) (sentence)] (stagbox) {};
+
+            
+            \node[right=.7cm of stagbox] (parser) {\rotatebox{90}{parser}};
+            \coordinate (parserboxn) at (sentencebox.north -| parser);
+            \coordinate (parserboxs) at (sentencebox.south -| parser);
+            \node[process, fit=(parser) (parserboxn) (parserboxs)] (parserbox) {};
+        
+            %%%%%%%%%%%%%%%%%%%%%%%%%
+
+            \node[fill=black!40, scale=0.3, right=.5cm of parserbox, obox] (deriv-1) {\subfile{figures/derivs/02-positions.tex}};
+            \node[fill=black!20, scale=0.3, below right=.3cm of deriv-1.north west, anchor=north west, obox] (deriv-2) {%
+                \subfile{figures/derivs/02-positions.tex}};
+            \node[fill=black!5, scale=0.3, below right=.3cm of deriv-2.north west, anchor=north west, obox] (derivation) {%
+                \subfile{figures/derivs/02-positions.tex}};
+            \node[gray, inner sep=0pt, anchor=west] (derivlab) at (deriv-1.north west|-sentence) {best derivations};
+            \node[gray, inner sep=0pt, anchor=west] at (derivlab.west) {best derivation};
+            \node[scale=0.3] at (deriv-2) {%
+                \subfile{figures/derivs/02-positions.tex}};
+            \node[fit=(derivlab) (derivation), inner sep=0pt, outer sep=0pt] (derivationbox) {};
+
+            \node[right=0.5cm of derivationbox] (trans) {\rotatebox{90}{eval.\@ dcp}};
+            \coordinate (transboxn) at (sentencebox.north -| trans);
+            \coordinate (transboxs) at (sentencebox.south -| trans);
+            \node[process, fit=(trans) (transboxn) (transboxs)] (transbox) {};
+
+            \node[fill=black!40, right=.5cm of transbox, scale=0.4, obox] (parse-1) {\subfile{figures/ctrees/03-what.tex}};
+            \node[fill=black!20, below right=.3cm of parse-1.north west, scale=0.4, anchor=north west, obox] (parse-2) {\subfile{figures/ctrees/03-what.tex}};
+            \node[fill=black!5, below right=.3cm of parse-2.north west, scale=0.4, anchor=north west, obox] (parse) {
+                \subfile{figures/ctrees/03-what.tex}
+            };
+            \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse-1.north west|-sentence) {constituent trees};
+            \node[fit=(parse) (parselab)] (ctreebox) {};
+            
+            \node[right=0.5cm of ctreebox] (reranking) {\rotatebox{90}{reranking}};
+            \coordinate (rerankingboxn) at (sentencebox.north -| reranking);
+            \coordinate (rerankingboxs) at (sentencebox.south -| reranking);
+            \node[process, fit=(reranking) (rerankingboxn) (rerankingboxs)] (rerankingbox) {};
+
+            \node[right=.5cm of rerankingbox, scale=0.6, yshift=-0.4cm] (result) {
+                \subfile{figures/ctrees/03-what.tex}
+            };
+            \node[gray, inner sep=0pt, anchor=west] (resultlab) at (result.north west|-sentence) {constituent tree};
+
+            \node[above right=2cm and .7cm of rules.east|-extraction] (mle2) {\rotatebox{90}{training}};
+            \coordinate[yshift=0.5cm] (mle2boxn) at (mle2.north);
+            \coordinate[yshift=-0.5cm] (mle2boxs) at (mle2.south);
+            \node[process, fit=(mle2) (mle2boxn) (mle2boxs)] (mle2box) {};
+            
+            \node[fill=black, obox, rounded corners=2pt, right=0.5cm of mle2box] (dopmodel) {\textcolor{lightgray}{R}};
+            \node[olabel, above right=0.5cm and 0cm of dopmodel.west,align=left] {reranking\\model};
+
+            \begin{scope}[->, dashed, gray, >=stealth]
+                \foreach \i in {1, ..., 4} {
+                    \draw (term-\i-1) -- (term-\i-1 -| taggerbox.west);
+                    \draw (stag-\i-1 -| taggerbox.east)-- (stag-\i-1);
+                    \draw (stag-\i-1)-- (stag-\i-1-|parserbox.west);
+                }
+                \draw (parserbox.east) -- (deriv-1.west |- parserbox);
+                \draw (derivation.east|-transbox) -- (transbox.west);
+                \draw (transbox.east) -- (parse-1.west|-transbox);
+                \draw (parse.east|-transbox) -- (transbox-|rerankingbox.west);
+                \draw (rerankingbox.east|-transbox) -- (result.west|-transbox);
+                \draw (transbox.east) -- (result.west|-transbox);
+                \draw (stagmodel.south) -- +(0,-0.6) -| (taggerbox);
+                \draw (posmodel.south) -- +(0,-1.95) -| (transbox);
+                \draw (treebanklab.north) |- (mle2box);
+                \draw (mle2box) -- (dopmodel);
+                \draw (dopmodel.east) -| +(1.3,-5) -| (rerankingbox);
+            \end{scope}
+
+            %%%% Parameter boxes
+            \begin{scope}[every node/.style={rounded corners=2pt, draw}]
+                \node[above=of extractionbox] (extractionparam) {\strut{}parameters};
+                \node[below=of parserbox] (parsingparam) {\strut{}parameters};
+            \end{scope}
+            \draw[dashed, gray] (extractionbox) -- (extractionparam);
+            \draw[dashed, gray] (parserbox) -- (parsingparam);
+        \end{tikzpicture}}
+    
+        \null{}
+        \vspace*{-.5cm}
+
+        \begin{itemize}
+            \item<+-> three treebanks
+            \begin{itemize}
+                \item NEGRA (German)
+                \item TIGER (German)
+                \item DPTB (English)
+                \item each with training, development and test portions
+            \end{itemize}
+            \item<+-> three architectures for neural prediction models
+            \begin{itemize}
+                \item supervised based on LSTM \citep{Hoc97,vaswani2016supertagging, Cor20, StaSte20}
+                \item pretrained based on transformers\\\citep[BERT-base, BERT-large or equivalent;][]{vaswani2017attention, Devlin2019}
+            \end{itemize}
+            \item<+-> grid search for extraction and parsing parameters
+            \begin{itemize}
+                \item 70 extraction and 48 parsing configurations per model in NEGRA
+                \item 20 extraction and 12 parsing configurations per model in TIGER and DPTB
+            \end{itemize}
+            \item<+-> final results using best configuration per prediction model and treebank
+            \begin{itemize}
+                \item average parsing scores for multiple random initializations per prediction model and treebank
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+\end{document}
