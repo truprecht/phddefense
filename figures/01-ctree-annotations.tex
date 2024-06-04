@@ -37,13 +37,24 @@
                     edge from parent }}
             edge from parent};
 
-        \begin{scope}[on background layer, every node/.style={fill=black!10, draw=black!40, rounded corners, inner sep=1pt, outer sep=0pt, blend mode=darken}]
+        % redraw corssing edges with white foundation
+        \begin{scope}[draw]
+            \draw[white, line width=1ex] (vp1.south) -- ++(0,-.5ex) -| (term3.north);
+            \draw (vp1.south) -- ++(0,-.5ex) -| (vp2.north);
+            \draw (vp1.south) -- ++(0,-.5ex)  -| (term3.north);
+
+            \draw[white, line width=1ex] (s.south) -- ++(0,-.5ex) -| (np.north);
+            \draw (s.south) -- ++(0,-.5ex) -| (np.north);
+            \draw (s.south) -- ++(0,-.5ex) -| (vp1.north);
+        \end{scope}
+
+        \begin{scope}[every node/.style={fill=black!10, draw=black!40, rounded corners, inner sep=1pt, outer sep=0pt, blend mode=darken}]
             \node[visible on=<2|handout:0>, fit=(pos)] {};
             \node[visible on=<3|handout:0>, fit=(term0) (term5)] {};
             \node[visible on=<4|handout:0>, fit=(wh) (prt) (sbar)] {};
         \end{scope}
 
-        \begin{scope}[on background layer]
+        \begin{scope}
             \path[visible on=<5>, rounded corners, fill=black!10, draw=black!40, blend mode=darken]
             (vp2.north west) -- (wh.north west) --
             (pos-1-1.south west) -- (pos-1-1.south east) -- (term0.north east) --
