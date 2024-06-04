@@ -66,8 +66,8 @@
                 the &  $S \to [x_1 \wildcard{} y_1\,x_2]\begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
                 survey &  $N \to [\wildcard{}] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\iparam{}}} child {node {\wildcard{}}}; \end{bmatrix}$ \\[2mm]
                 was &   $V_2 \to [x_1, \wildcard{} x_2] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {\wildcard{}}}; \end{bmatrix} (V_2)$ \\[2mm]
-                carried &  $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\text{-}B)$ \\[2mm]
-                out & $V\text{-}B \to [\wildcard{}] [\iparam{} \wildcard{}]$
+                carried &  $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\binsym{})$ \\[2mm]
+                out & $V\binsym{} \to [\wildcard{}] [\iparam{} \wildcard{}]$
         \end{tabular}};
 
         \node[scale=0.6, right=of strictguide, visible on=<22->] (modguide) {
@@ -83,7 +83,7 @@
                 every node/.style={font=\small},
                 ]
                 \matrix (pos) [matrix of nodes, every node/.style={anchor=center, inner sep=0pt, font=\strut, minimum height=12pt}, column sep=6pt, ampersand replacement=\&] {
-                    |[font=\scriptsize]| WH+WRB \& PT \& NN \& VBD \& VBN \& |[font=\scriptsize]| {PRT+RP} \\
+                    |[font=\scriptsize]| WH+WRB \& DT \& NN \& VBD \& VBN \& |[font=\scriptsize]| {PRT+RP} \\
                     where \& the  \& survey     \& was \& carried     \& out   \\
                 };
 
@@ -122,12 +122,12 @@
         \end{tikzpicture}};
 
         \node[below=4mm of modguide, font=\small, scale=.65, visible on=<29>] (r2lrules) {\begin{tabular}{ll}
-                where &   \(V_2 \to [\wildcard{}, x_1] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{VP} child {node {\wildcard{}}} child {node {$x$} child {node {\iparam{}}}}; \end{bmatrix} (V\text{-}B)\) \\[2mm]
+                where &   \(V_2 \to [\wildcard{}, x_1] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{VP} child {node {\wildcard{}}} child {node {$x$} child {node {\iparam{}}}}; \end{bmatrix} (V\binsym{})\) \\[2mm]
                 the & $N \to [\wildcard{}]\begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{NP} child {node {\wildcard{}}} child {node {\iparam{}}}; \end{bmatrix}$ \\[2mm]
                 survey &  $S \to [x_1\,y_1 \wildcard{} x_2] \begin{bmatrix}\tikz[tcomp, anchor=center, font=\tiny]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
                 was &  arg$(V) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
                 carried &   $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp,anchor=center, font=\tiny]\node{VP} child {node {$x$} child {node {\wildcard{}}}} child {node {$y$}}; \end{bmatrix} (V_2, \text{arg}(V))$ \\[2mm]
-                out &   $V\text{-}B \to [\wildcard{}] [\iparam{} \, \wildcard{}]$
+                out &   $V\binsym{} \to [\wildcard{}] [\iparam{} \, \wildcard{}]$
         \end{tabular}};
 
 

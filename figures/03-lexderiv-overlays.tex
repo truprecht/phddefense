@@ -10,42 +10,42 @@
                         child {node[treeangle] (tvalleft) {}}
                         child {node[treeangle,fill=gray] {}}}
                     child{node {NP}
-                        child {node{PT}
+                        child {node{DT}
                             child {node (tvalthe) {the}}}
                         child {node[treeangle,fill=black] (tvalright) {}}}};
                 \node[fit=(tvalroot) (tvalleft) (tvalright), inner sep=0pt, outer sep=0pt] (tval) {};
             \end{scope}
         }
 
-        \visible<8,12>{
+        \visible<4,12>{
             \node[left=.5cm of tval.south west, font=\small, anchor=south east] (val) {$[$where the survey was carried out$]$};
         }
 
         \matrix[below=1cm of tval, xshift=-1cm] (rule) [matrix of nodes, ampersand replacement=\&] {
-            \(\alert<2>{S}\) \& \(\to\) \& $[\x_1 \, \text{the} \, \y_1 \, \x_2]$ \& $\begin{bmatrix}\rootclause{}\end{bmatrix}$ \& $(\alert<2>{V_2}, \alert<2>{N})$\\
+            \(\alert<2>{S}\) \& \(\to\) \& \alert<3-4>{$[\x_1 \, \text{the} \, \y_1 \, \x_2]$} \& \alert<9-10>{$\begin{bmatrix}\rootclause{}\end{bmatrix}$} \& $(\alert<2>{V_2}, \alert<2>{N})$\\
         };
         
-        \visible<3-6>{
+        \visible<5-8>{
             \node[above=of rule-1-1] (fo1) {\(\mathrm{fo}(S) = 1\)};
             \node[right=of fo1] (fo2) {\(\mathrm{fo}(V_2) = 2\)};
             \node[right=of fo2] (fo3) {\(\mathrm{fo}(N) = 1\)};
         }
 
-        \draw<4> (rule-1-3.north west) edge[decorate, decoration={brace}, gray] node[midway] (fobrace) {\phantom{a}} (rule-1-3.north east);
-        \draw<4>[dashed, gray] (fobrace) edge[out=90, in=-90] (fo1);
-        \draw<5>[dashed, gray] (rule-1-3.165) edge[out=90, in=-90] (fo2);
-        \draw<5>[dashed, gray] (rule-1-3.20) edge[out=90, in=-90] (fo2);
-        \draw<6>[dashed, gray] (rule-1-3.40) edge[out=90, in=-90] (fo3);
+        \draw<6> (rule-1-3.north west) edge[decorate, decoration={brace}, gray] node[midway] (fobrace) {\phantom{a}} (rule-1-3.north east);
+        \draw<6>[dashed, gray] (fobrace) edge[out=90, in=-90] (fo1);
+        \draw<7>[dashed, gray] (rule-1-3.165) edge[out=90, in=-90] (fo2);
+        \draw<7>[dashed, gray] (rule-1-3.20) edge[out=90, in=-90] (fo2);
+        \draw<8>[dashed, gray] (rule-1-3.40) edge[out=90, in=-90] (fo3);
 
-        \visible<7-8>{
+        \visible<3-4>{
             \matrix[below=1.2cm of rule-1-3, font=\small] (args) [matrix of nodes, ampersand replacement=\&] {
                 $[$where, \& was carried out$]$, \& $[$survey$]$ \\
             };
-            \draw<7-8>[dashed, gray] (args-1-1) edge[out=90, in=-90,->] (rule-1-3.-165);
-            \draw<7-8>[dashed, gray] (args-1-2) edge[out=90, in=-90,->] (rule-1-3.-20);
-            \draw<7-8>[dashed, gray] (args-1-3) edge[out=90, in=-90,->] (rule-1-3.-40);
+            \draw<3-4>[dashed, gray] (args-1-1) edge[out=90, in=-90,->] (rule-1-3.-165);
+            \draw<3-4>[dashed, gray] (args-1-2) edge[out=90, in=-90,->] (rule-1-3.-20);
+            \draw<3-4>[dashed, gray] (args-1-3) edge[out=90, in=-90,->] (rule-1-3.-40);
         }
-        \draw<8,12>[gray] (rule-1-3) edge[|->] (val.south);
+        \draw<4,12>[gray] (rule-1-3) edge[|->] (val.south);
 
         
         \visible<9-10>{
@@ -83,7 +83,7 @@
                             child {node[treeangle, above=1.5ex of sntresult-1-1] (tval2-1) {}}
                             child {node[treeangle, above=1.5ex of sntresult-1-4, fill=gray] {}}}
                         child{node[yshift=-2.5ex] {NP}
-                            child[color=black] {node[above=of sntresult-1-2.north]{PT}}
+                            child[color=black] {node[above=of sntresult-1-2.north]{DT}}
                             child[color=black] {node[treeangle, above=1.5ex of sntresult-1-3, fill=black] (tval2-2) {}}
                             edge from parent[double=black, color=white]}};
             \end{scope}

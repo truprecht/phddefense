@@ -11,7 +11,7 @@
         obox/.style={draw, rectangle, rounded corners, line width=.3mm, align=left}
     }
     \begin{frame}{Experimental Setup}
-        \visible<2>{\begin{tikzpicture}[font=\small, node distance=1em, transform canvas={scale=0.6, xshift=15cm, yshift=-4.6cm}]
+        \visible<2|handout:0>{\begin{tikzpicture}[font=\small, node distance=1em, transform canvas={scale=0.6, xshift=15cm, yshift=-4.6cm}]
             \node[olabel] (treebanklab) {treebank\strut};
             \begin{scope}[every node/.style={scale=0.4, obox}]
                 \node[below=.3cm of treebanklab.west, anchor=north west, fill=black!40] (ctree1) {\subfile{figures/ctrees/03-what.tex}};
@@ -30,21 +30,21 @@
                     \begin{tabular}{lll}
                         What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                         should &MD& \(S \to \ldots\)\\
-                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        I &PRP& \(S\binsym{} \to \ldots\)\\
                         do &VB& \(V_2 \to \ldots\)\\
                     \end{tabular}};
                 \node[below right=.3cm of rules1.north west, anchor=north west, fill=black!20] (rules2) {%
                     \begin{tabular}{lll}
                         What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                         should &MD& \(S \to \ldots\)\\
-                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        I &PRP& \(S\binsym{} \to \ldots\)\\
                         do &VB& \(V_2 \to \ldots\)\\
                     \end{tabular}};
                 \node[below right=.3cm of rules2.south east, anchor=south east, fill=black!2] (rules3) {%
                     \begin{tabular}{lll}
                         What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                         should &MD& \(S \to \ldots\)\\
-                        I &PRP& \(S\text{-}B \to \ldots\)\\
+                        I &PRP& \(S\binsym{} \to \ldots\)\\
                         do &VB& \(V_2 \to \ldots\)\\
                     \end{tabular}};
             \end{scope}
@@ -180,24 +180,24 @@
         \vspace*{-.5cm}
 
         \begin{itemize}
-            \item<+-> three treebanks
+            \item<1-> three treebanks
             \begin{itemize}
                 \item NEGRA (German)
                 \item TIGER (German)
                 \item DPTB (English)
                 \item each with training, development and test portions
             \end{itemize}
-            \item<+-> three architectures for neural prediction models
+            \item<2-> three architectures for neural prediction models
             \begin{itemize}
-                \item supervised based on LSTM \citep{Hoc97,vaswani2016supertagging, Cor20, StaSte20}
-                \item pretrained based on transformers\\\citep[BERT-base, BERT-large or equivalent;][]{vaswani2017attention, Devlin2019}
+                \item<3-> supervised based on LSTM (\citealp{Hoc97}; cf.\@ \citealp{vaswani2016supertagging, Cor20, StaSte20})
+                \item<3-> pretrained based on transformers \citep[BERT-base, BERT-large or equivalent;][]{vaswani2017attention, Devlin2019}
             \end{itemize}
-            \item<+-> grid search for extraction and parsing parameters
+            \item<4-> grid search for extraction and parsing parameters
             \begin{itemize}
                 \item 70 extraction and 48 parsing configurations per model in NEGRA
                 \item 20 extraction and 12 parsing configurations per model in TIGER and DPTB
             \end{itemize}
-            \item<+-> final results using best configuration per prediction model and treebank
+            \item<5-> final results using best configuration per prediction model and treebank
             \begin{itemize}
                 \item average parsing scores for multiple random initializations per prediction model and treebank
             \end{itemize}

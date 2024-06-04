@@ -36,7 +36,7 @@
                     child { node[] (vp1) {VP}
                         child { node (vp2) {VP}
                             child { node[above=0ex of pos-1-1] (wrb) {1}}
-                            child { node[xshift=1ex] (vpbin) {VP-B}
+                            child { node[xshift=1ex] (vpbin) {VP\binsym{}}
                                 child { node[above=0ex of pos-1-5] (term4) {5} edge from parent}
                                 child { node[above=0ex of pos-1-6] (prt) {6} }
                             edge from parent}}
@@ -69,11 +69,11 @@
 
         \node[below=2mm of strictguide, font=\small, visible on=<11->, scale=.8] (l2rrules) {\begin{tabular}{ll}
                 where &   $\text{arg}(V) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
-                the &  $S \to [x_1 \wildcard{} y_1\,x_2]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
+                the &  $S \to [x_1 \wildcard{} y_1 x_2]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {\wildcard{}}}}};\end{bmatrix} (V_2, N)$ \\[2mm]
                 survey &  $N \to [\wildcard{}] \begin{bmatrix} \tikz[tcomp, anchor=center]\node{NP} child {node {\iparam{}}} child {node {\wildcard{}}}; \end{bmatrix}$ \\[2mm]
                 was &   $V_2 \to [x_1, \wildcard{} x_2] \begin{bmatrix} \tikz[tcomp, anchor=center]\node{VP} child {node {$x$}} child {node {\wildcard{}}}; \end{bmatrix} (V_2)$ \\[2mm]
-                carried &  $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp, anchor=center]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\text{-}B)$ \\[2mm]
-                out & $V\text{-}B \to [\wildcard{}] [\iparam{} \wildcard{}]$
+                carried &  $V_2 \to [x_1, \wildcard{} y_1] \begin{bmatrix} \tikz[tcomp, anchor=center]\node{VP} child {node {$x$}} child {node {$y$} child {node {\wildcard{}}}}; \end{bmatrix} (\text{arg}(V), V\binsym{})$ \\[2mm]
+                out & $V\binsym{} \to [\wildcard{}] [\iparam{} \wildcard{}]$
         \end{tabular}};
 
         \node[scale=0.6, below=0mm of guides.south east, anchor=north east, visible on=<2->] (modguide) {
@@ -127,11 +127,11 @@
 
         \node[below=2mm of modguide, font=\small, visible on=<9->, scale=.8] (r2lrules) {\begin{tabular}{lll}
             where& $W \to [\wildcard{}]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{WH} child { node {\wildcard{}}};\end{bmatrix}$ \\[2mm]
-            the& $\text{a}(N) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
-            survey & $N \to [x_1\wildcard{}]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{NP} child {node {x}} child { node {\wildcard{}}};\end{bmatrix}$(\text{a}(N)) \\[2mm]
-            was & $S \to [x_1y_1\wildcard{}x_2]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{SBAR} child { node {S} child { node {VP} child { node {x}} child { node {\wildcard{}}}} child {node {y}}};\end{bmatrix}(V, N)$
+            the& $\text{arg}(N) \to [\wildcard{}][\wildcard{}]$ \\[2mm]
+            survey & $N \to [x_1\wildcard{}]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{NP} child {node {x}} child { node {\wildcard{}}};\end{bmatrix}$(\text{arg}(N)) \\[2mm]
+            was & $S \to [x_1y_1\wildcard{}x_2]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{SBAR} child { node {S} child { node {VP} child { node {x}} child { node {\wildcard{}}}} child {node {y}}};\end{bmatrix}(V_2, N)$
              \\[6mm]
-            carried& $V \to [x_1,\wildcard{}\y_1]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{VP} child {node {x}} child { node {\wildcard{}}} {child {node {y}}};\end{bmatrix}(W, P)$ \\[2mm]
+            carried& $V_2 \to [x_1,\wildcard{}\y_1]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{VP} child {node {x}} child { node {\wildcard{}}} {child {node {y}}};\end{bmatrix}(W, P)$ \\[2mm]
             out & $P \to [\wildcard{}]\begin{bmatrix}\tikz[tcomp, anchor=center]\node{PRT} child { node {\wildcard{}}};\end{bmatrix}$\\
         \end{tabular}};
 

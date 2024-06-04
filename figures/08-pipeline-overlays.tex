@@ -9,25 +9,25 @@
         \node (ctrees) {\subfile{pipeline/01-ctrees.tex}};
 
         \visible<2->{
-            \alert<15>{
+            \alert<15|handout:0>{
                 \node[right=.7cm of treebank] (extraction) {\rotatebox{90}{extraction}};}
             \coordinate (extractionboxn) at (treebank.north -| extraction);
             \coordinate (extractionboxs) at (treebank.south -| extraction);
             \node[process, fit=(extraction) (extractionboxn) (extractionboxs)] (extractionbox) {};
         }
 
-        \node[right=.5cm of extraction,visible on=<2-11>] {\subfile{pipeline/02-rule-lists.tex}};
+        \node[right=.5cm of extraction,visible on=<2-11|handout:0>] {\subfile{pipeline/02-rule-lists.tex}};
         \node[right=.5cm of extraction,visible on=<12->] {\subfile{pipeline/04-blueprint-lists.tex}};
 
         \visible<3-11,13->{
-            \alert<16>{
+            \alert<16|handout:0>{
                 \node[right=.7cm of rules] (mle) {\rotatebox{90}{\strut\alt<-10>{mle}{training}}};}
             \coordinate (mleboxn) at (treebank.north -| mle);
             \coordinate (mleboxs) at (treebank.south -| mle);
             \node[process, fit=(mle) (mleboxn) (mleboxs), outer sep=0pt] (mlebox) {};
         }
 
-        \visible<3-11>{
+        \visible<3-11|handout:0>{
             \node[right=.3cm of mlebox] {\subfile{pipeline/03-grammar.tex}};
             \node<11>[fit=(grammar1), cross out, line width=3px, draw=red] {};
         }
@@ -82,8 +82,8 @@
                     \staglist[3.3cm]{$\mathit{S} \xrightarrow{0.57} [x_1\,\text{2}\,y_1\,x_2][\ldots] (V_2, N)$}\\
                     \staglist[1.7cm]{$N \xrightarrow{0.8} [\text{3}] [\ldots]$}\\
                     \staglist[2.6cm]{$V_2 \xrightarrow{0.55} [x_1, \text{4}\, x_2] [\ldots] (V_2)$}\\
-                    \staglist[3.5cm]{$V_2 \xrightarrow{0.6} [x_1, \text{5}\, y_1] [\ldots](\mathrm{arg}(V), V\text{-}B)$}\\
-                    \staglist[1.7cm]{$V\text{-}B \xrightarrow{0.7} [\text{6}][\ldots]$}\\
+                    \staglist[3.5cm]{$V_2 \xrightarrow{0.6} [x_1, \text{5}\, y_1] [\ldots](\mathrm{arg}(V), V\binsym{})$}\\
+                    \staglist[1.7cm]{$V\binsym{} \xrightarrow{0.7} [\text{6}][\ldots]$}\\
                 };
             \end{scope}
             \node[gray, anchor=west, inner sep=0pt] (staglab) at (stag.west|-sentence) {supertags + confidence};
@@ -96,7 +96,7 @@
             \coordinate (parserboxs) at (sentencebox.south -| parser);
             \node[process, fit=(parser) (parserboxn) (parserboxs)] (parserbox) {};
 
-            \node[visible on=<-9>, right=of parserbox, scale=0.5, yshift=-4mm] (derivation) {%
+            \node[visible on=<-9|handout:0>, right=of parserbox, scale=0.5, yshift=-4mm] (derivation) {%
                 \subfile{derivs/01-survey.tex}};
             \node[visible on=<10->, right=of parserbox, scale=0.6, yshift=-4mm] (derivation) {%
                 \subfile{derivs/02-positions.tex}};
@@ -106,7 +106,7 @@
 
 
         \visible<6->{
-            \node[right=1.5em of derivationbox] (trans) {\rotatebox{90}{eval.\@ dcp\visible<10->{+ token subst.\@}}};
+            \node[right=1.5em of derivationbox] (trans) {\rotatebox{90}{eval.\@ dcp\visible<10->{ + token subst.\@}}};
             \coordinate (transboxn) at (sentencebox.north -| trans);
             \coordinate (transboxs) at (sentencebox.south -| trans);
             \node[process, fit=(trans) (transboxn) (transboxs)] (transbox) {};
@@ -119,12 +119,12 @@
 
         \begin{scope}[->, dashed, gray, >=stealth]
             \foreach \i in {1, ..., 6} {
-                \draw<5-9> (term-\i-2) -- (term-\i-2 -| parserbox.west);
+                \draw<5-9|handout:0> (term-\i-2) -- (term-\i-2 -| parserbox.west);
                 \draw<10-> (term-\i-2) -- (term-\i-2 -| taggerbox.west);
                 \draw<10-> (stag-\i-1 -| taggerbox.east)-- (stag-\i-1);
                 \draw<10-> (stag-\i-1)-- (stag-\i-1-|parserbox.west);
             }
-            \draw<5-9> (grammar.south) -- +(0,-.9) -| coordinate[midway] (grammartoparser) (parserbox);
+            \draw<5-9|handout:0> (grammar.south) -- +(0,-.9) -| coordinate[midway] (grammartoparser) (parserbox);
             \draw<13-> (stagmodel.south) -- +(0,-1.2) -| (taggerbox);
             \draw<14-> (posmodel.south) -- +(0,-2.7) -| (transbox);
             \draw<5-> (parserbox.east) -- (derivation.west |- parserbox);
@@ -132,6 +132,6 @@
             \draw<6-> (transbox.east) -- (parse.west|-transbox);
         \end{scope}
 
-        \draw<11> node[red, above=3px of taggerbox] {\Huge?};
+        \draw<11|handout:0> node[red, above=3px of taggerbox] {\Huge?};
     \end{tikzpicture}
 \end{document}

@@ -4,10 +4,10 @@
     \begin{frame}{Hybrid Grammars \citep{Ned14}}
         \begin{minipage}{.58\linewidth}
             \begin{overprint}
-                \onslide<-13>
+                \onslide<-14|handout:0>
                     \resizebox{\linewidth}{!}{
                         \subfile{figures/03-lexderiv-overlays}}
-                \onslide<14->
+                \onslide<15-|handout:1>
                     \resizebox{\linewidth}{!}{
                         \subfile{figures/03.1-derivation}}
             \end{overprint}
@@ -17,18 +17,19 @@
             \begin{itemize}
                 \item rule structure
                     \begin{itemize}
-                        \item \alert<2>{nonterminals} + \alert<3-6>{assigned fanout}
-                        \item \alert<4-12>{compositions} + \alert<11-12>{alignment}
+                        \item \alert<2|handout:0>{nonterminals} + \alert<5-8|handout:0>{assigned fanout}
+                        \item \alert<3-12|handout:0>{compositions} + \alert<11-12|handout:0>{alignment}
                             \begin{itemize}
-                                \item[(a)] \alert<4-8>{over string tuples}
-                                \item[(b)] \alert<9-10>{over (consecutive) tree (context) sequences}
+                                \item[(a)] \alert<3-8|handout:0>{over string tuples}
+                                \item[(b)] \alert<9-10|handout:0>{over (consecutive) tree sequences}
                             \end{itemize}
-                        \item<13-> \alert<13>{\(\approx\) function over constituent trees}
+                            \visible<13->{\alert<13|handout:0>{\(\approx\) function over constituent trees}}
+                        \item<14-> lexical = one matching lex.\@ symbol in compositions
                     \end{itemize}
-                \item<21-> parsing:
+                \item<22-> parsing:
                 \begin{itemize}
                     \item find derivation via (a)
-                    \item comp.\@ constituent tree via (b)
+                    \item compute constituent tree via (b)
                 \end{itemize}
             \end{itemize}
         \end{minipage}

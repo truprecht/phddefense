@@ -19,7 +19,7 @@
         \end{scope}
         \node[fit=(treebanklab) (ctree1) (ctree3), boundingbox] (treebank) {};
 
-        \alert<2,5>{
+        \alert<2,5,7|handout:0>{
             \node[right=.7cm of treebank] (extraction) {\rotatebox{90}{extraction}};
             \coordinate (extractionboxn) at (treebank.north -| extraction);
             \coordinate (extractionboxs) at (treebank.south -| extraction);
@@ -31,28 +31,28 @@
                 \begin{tabular}{lll}
                     What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                     should &MD& \(S \to \ldots\)\\
-                    I &PRP& \(S\text{-}B \to \ldots\)\\
+                    I &PRP& \(S\binsym{} \to \ldots\)\\
                     do &VB& \(V_2 \to \ldots\)\\
                 \end{tabular}};
             \node[below right=.3cm of rules1.north west, anchor=north west, fill=black!20] (rules2) {%
                 \begin{tabular}{lll}
                     What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                     should &MD& \(S \to \ldots\)\\
-                    I &PRP& \(S\text{-}B \to \ldots\)\\
+                    I &PRP& \(S\binsym{} \to \ldots\)\\
                     do &VB& \(V_2 \to \ldots\)\\
                 \end{tabular}};
             \node[below right=.3cm of rules2.south east, anchor=south east, fill=black!2] (rules3) {%
                 \begin{tabular}{lll}
                     What &WP& \(\mathrm{arg}(V) \to \ldots\)\\
                     should &MD& \(S \to \ldots\)\\
-                    I &PRP& \(S\text{-}B \to \ldots\)\\
+                    I &PRP& \(S\binsym{} \to \ldots\)\\
                     do &VB& \(V_2 \to \ldots\)\\
                 \end{tabular}};
         \end{scope}
         \node[olabel, anchor=west] (ruleslab) at (treebanklab-|rules1.west) {blueprints\strut};
         \node[fit=(ruleslab) (rules1) (rules3), boundingbox] (rules) {};
 
-        \alert<5>{
+        \alert<5|handout:0>{
             \node[right=.7cm of rules.east|-extraction] (mle) {\rotatebox{90}{training}};
             \coordinate (mleboxn) at (treebank.north -| mle);
             \coordinate (mleboxs) at (treebank.south -| mle);
@@ -85,7 +85,7 @@
         \node[gray, inner sep=0pt, above=.4cm of term.north west, anchor=west] (sentence) {sentence};
         \node[fit=(term) (sentence), inner sep=0pt] (sentencebox) {};
 
-        \alert<5>{
+        \alert<5|handout:0>{
             \node[right=.5cm of sentencebox] (tagger) {\rotatebox{90}{supertagger}};
             \coordinate (taggerboxn) at (sentencebox.north -| tagger);
             \coordinate (taggerboxs) at (sentencebox.south -| tagger);
@@ -104,7 +104,7 @@
         \node[boundingbox, fit=(stag) (sentence)] (stagbox) {};
 
         
-        \alert<5>{
+        \alert<5|handout:0>{
             \node[right=.7cm of stagbox] (parser) {\rotatebox{90}{parser}};
             \coordinate (parserboxn) at (sentencebox.north -| parser);
             \coordinate (parserboxs) at (sentencebox.south -| parser);
@@ -128,7 +128,7 @@
         }
         \node[fit=(derivlab) (derivation), inner sep=0pt, outer sep=0pt] (derivationbox) {};
 
-        \alert<5>{
+        \alert<5|handout:0>{
             \node[right=0.5cm of derivationbox] (trans) {\rotatebox{90}{eval.\@ dcp}};
             \coordinate (transboxn) at (sentencebox.north -| trans);
             \coordinate (transboxs) at (sentencebox.south -| trans);
@@ -144,7 +144,7 @@
             \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse-1.north west|-sentence) {constituent trees};
             \node[fit=(parse) (parselab)] (ctreebox) {};
             
-            \alert<3-5>{
+            \alert<3-5|handout:0>{
                 \node[right=0.5cm of ctreebox] (reranking) {\rotatebox{90}{reranking}};
                 \coordinate (rerankingboxn) at (sentencebox.north -| reranking);
                 \coordinate (rerankingboxs) at (sentencebox.south -| reranking);
@@ -158,7 +158,7 @@
         \node[gray, inner sep=0pt, anchor=west] (resultlab) at (result.north west|-sentence) {constituent tree};
 
         \visible<4->{
-            \alert<4-5>{
+            \alert<4-5|handout:0>{
                 \node[above right=2cm and .7cm of rules.east|-extraction] (mle2) {\rotatebox{90}{training}};
                 \coordinate[yshift=0.5cm] (mle2boxn) at (mle2.north);
                 \coordinate[yshift=-0.5cm] (mle2boxs) at (mle2.south);
@@ -186,5 +186,13 @@
             \draw<4-> (mle2box) -- (dopmodel);
             \draw<4-> (dopmodel.east) -| +(1.3,-5) -| (rerankingbox);
         \end{scope}
+
+        %%%% Parameter boxes
+        \begin{scope}[every node/.style={rounded corners=2pt, draw}]
+            \alert<2,5-7,8|handout:0>{\node[above=of extractionbox] (extractionparam) {\strut{}parameters};}
+            \alert<5,6,8|handout:0>{\node[below=of parserbox] (parsingparam) {\strut{}parameters};}
+        \end{scope}
+        \draw[dashed, gray] (extractionbox) -- (extractionparam);
+        \draw[dashed, gray] (parserbox) -- (parsingparam);
     \end{tikzpicture}
 \end{document}

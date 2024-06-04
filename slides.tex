@@ -4,6 +4,7 @@
 \usetikzlibrary{positioning, matrix, fit, decorations, shapes, shapes.misc, decorations.pathreplacing, calc, backgrounds}
 \input{figureconf}
 \input{figures/derivs/00-survey-lexderiv-commands.tex}
+\newcommand{\binsym}[1]{\ensuremath{_{\scalebox{.4}[.8]{\textless{}}#1\scalebox{.4}[.8]{\textgreater{}}}}}
 
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}{%
@@ -19,7 +20,7 @@
 \setbeamertemplate{itemize subitem}{--}
 
 \title{On the Extraction of Lexicalized Grammars\\and Parsing via Supertagging\\for Discontinuous Constituent Structures}
-\subtitle{Phd defense}
+\subtitle{PhD Defense}
 \newcommand{\theemails}{%
     \href{thomas.ruprecht@tu-dresden.de}{thomas.ruprecht@tu-dresden.de}%
 }
@@ -45,12 +46,16 @@
     \subfileinclude{contributions.tex}
     
     \section{Lexicalized Rule Extraction}
+    \againframe<7>{contributions}
     \subfileinclude{extraction.tex}
     \subfileinclude{guides.tex}
+    \againframe<13>{extractionpipe}
     \subfileinclude{nonterminals.tex}
 
     \section{Experiments}
+    \againframe<8>{contributions}
     \subfileinclude{experiments.tex}
+    \subfileinclude{results.tex}
 
     \section{Publications}
     \begin{frame}{Publications}
@@ -60,7 +65,7 @@
                     \item statistical parser implementation for LCFRS
                     \item includes context-free approximation, refinement and fallbacks
                 \end{itemize}
-            \item \citealp{MoeRup20}\emph{Lexicalization of Probabilistic Linear Context-free Rewriting Systems} in \emph{IWPT Proceedings}.
+            \item \citealp{MoeRup20}, \emph{Lexicalization of Probabilistic Linear Context-free Rewriting Systems} in \emph{IWPT Proceedings}.
                 \begin{itemize}
                     \item lexicalization scheme for probabilistic LCFRS and $k$-best parsing
                 \end{itemize}
