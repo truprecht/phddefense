@@ -1,18 +1,24 @@
 \documentclass[slides]{subfiles}
 
 \begin{document}
-    \begin{frame}<1-4,6-12>[label=extractionpipe]{Lexicalized Rule Extraction}
+    \begin{frame}<1-12>[label=extractionpipe]{Lexicalized Rule Extraction}
         \resizebox{\linewidth}{!}{%
         \begin{tikzpicture}
             \node[scale=0.8] (ctree) {\subfile{figures/ctrees/01-survey.tex}};
 
-            \visible<2->{
+            \visible<2>{
+                \node[scale=0.8, below=of ctree.south east, anchor=north, xshift=1cm] {
+                    \subfile{figures/ctrees/04-survey-binarized.tex}
+                };
+            }
+            
+            \visible<3->{
                 \node[scale=0.8, below=of ctree.south east, anchor=north, xshift=1cm] (bintree) {
                     \subfile{figures/ctrees/04.1-survey-unbinarized.tex}
                 };
             }
 
-            \visible<4->{
+            \visible<5->{
                 \node[scale=0.8, right=of ctree] (guidetree) {
                     \subfile{figures/ctrees/05.1-survey-headguide.tex}
                 };
@@ -31,7 +37,7 @@
 
             \begin{scope}[dashed, gray, every node/.style={font=\small, text=black, align=left, draw=gray, rectangle, rounded corners=2pt, solid}, >=stealth]
                 \draw[visible on=<2->] (ctree.-110) edge[bend right, ->] node[below left] {rank transformation:\\$\bullet$\,strategy\\$\bullet$\,direction\\$\bullet$\,Markovization} ($(bintree.north west)+(1,-1)$);
-                \draw[visible on=<4->] ($(bintree)+(1,1)$) edge[bend right, ->] node[above left] {assign guide values:\\\alert<12|handout:0>{$\bullet$\,guide constructor}} (guidetree);
+                \draw[visible on=<5->] ($(bintree)+(1,1)$) edge[bend right, ->] node[above left] {assign guide values:\\\alert<12|handout:0>{$\bullet$\,guide constructor}} (guidetree);
                 \draw[visible on=<6->] (guidetree.0) edge[bend left, ->] node[above right] {rule extraction:\\\alert<13|handout:0>{$\bullet$\,nonterminal constructor}\\$\bullet$\,grammar formalism} (rulelist);
             \end{scope}
         \end{tikzpicture}%

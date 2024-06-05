@@ -26,6 +26,8 @@
     }
 }%
 %
+\newcommand{\rootclauseol}{%
+    \tikz[tcomp]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {DT} child {node[alarm on=<14>] {the}}}}};}%
 \newcommand{\rootclause}{%
     \tikz[tcomp]\node{SBAR} child { node {S} child {node{$x$}} child { node {$y$} child { node {DT} child {node {the}}}}};}%
 \newcommand{\uppervclause}{%

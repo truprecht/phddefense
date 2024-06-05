@@ -7,7 +7,7 @@
             \node[fill=black!5, below right=.1cm of stag2.north west, anchor=north west, align=center] {\strut #2};}}
     \tikzset{,
         boundingbox/.style={inner sep=0pt, outer sep=0pt},
-        olabel/.style={gray, inner sep=0pt},
+        olabel/.style={darkgray, inner sep=0pt},
         obox/.style={draw, rectangle, rounded corners, line width=.3mm, align=left}
     }
     \begin{tikzpicture}[font=\small, node distance=1em, remember picture]
@@ -82,7 +82,7 @@
                 \strut \text{do}\\
             };
         \end{scope}
-        \node[gray, inner sep=0pt, above=.4cm of term.north west, anchor=west] (sentence) {sentence};
+        \node[darkgray, inner sep=0pt, above=.4cm of term.north west, anchor=west] (sentence) {sentence};
         \node[fit=(term) (sentence), inner sep=0pt] (sentencebox) {};
 
         \alert<5|handout:0>{
@@ -100,7 +100,7 @@
                 \staglist[1.2cm]{$V_2 \xrightarrow{0.55}  \ldots$}\\
             };
         \end{scope}
-        \node[gray, anchor=south west, inner sep=0pt, align=left] (staglab) at (stag.west|-sentence.south) {supertags\\+ confidence};
+        \node[darkgray, anchor=south west, inner sep=0pt, align=left] (staglab) at (stag.west|-sentence.south) {supertags\\+ confidence};
         \node[boundingbox, fit=(stag) (sentence)] (stagbox) {};
 
         
@@ -119,10 +119,10 @@
                 \subfile{derivs/02-positions.tex}};
             \node[fill=black!5, scale=0.3, below right=.3cm of deriv-2.north west, anchor=north west, obox] (derivation) {%
                 \subfile{derivs/02-positions.tex}};
-            \node[gray, inner sep=0pt, anchor=west] (derivlab) at (deriv-1.north west|-sentence) {best derivations};
+            \node[darkgray, inner sep=0pt, anchor=west] (derivlab) at (deriv-1.north west|-sentence) {best derivations};
         }
         \only<-2>{
-            \node[gray, inner sep=0pt, anchor=west] at (derivlab.west) {best derivation};
+            \node[darkgray, inner sep=0pt, anchor=west] at (derivlab.west) {best derivation};
             \node[scale=0.3] at (deriv-2) {%
                 \subfile{derivs/02-positions.tex}};
         }
@@ -141,7 +141,7 @@
             \node[fill=black!5, below right=.3cm of parse-2.north west, scale=0.4, anchor=north west, obox] (parse) {
                 \subfile{ctrees/03-what.tex}
             };
-            \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse-1.north west|-sentence) {constituent trees};
+            \node[darkgray, inner sep=0pt, anchor=west] (parselab) at (parse-1.north west|-sentence) {constituent trees};
             \node[fit=(parse) (parselab)] (ctreebox) {};
             
             \alert<3-5|handout:0>{
@@ -155,7 +155,7 @@
         \node[right=.5cm of rerankingbox, scale=0.6, yshift=-0.4cm] (result) {
             \subfile{ctrees/03-what.tex}
         };
-        \node[gray, inner sep=0pt, anchor=west] (resultlab) at (result.north west|-sentence) {constituent tree};
+        \node[darkgray, inner sep=0pt, anchor=west] (resultlab) at (result.north west|-sentence) {constituent tree};
 
         \visible<4->{
             \alert<4-5|handout:0>{

@@ -7,7 +7,7 @@
         \resizebox{!}{.9\textheight}{%
     \begin{tikzpicture}
         \matrix (guides) [matrix of nodes, ampersand replacement=\&, column sep=1cm] {
-            |[gray]| vanilla \& |[gray]| strict \& |[gray]| near \& |[gray]| less \& |[gray]| head \& |[gray]| modifier \\
+            |[darkgray]| vanilla \& |[darkgray]| strict \& |[darkgray]| near \& |[darkgray]| least \& |[darkgray]| head \& |[darkgray]| dependent \\
         };
 
         \begin{scope}[every node/.style={draw, gray, rectangle, rounded corners=2pt, inner sep=0pt}]
@@ -56,7 +56,7 @@
                         \draw (sbar.south) -- ++(0,-.5ex) -| (vp1.north);
                     \end{scope}
 
-                    \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, gray]
+                    \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, darkgray]
                         \node at (wrb) {\phantom{1}};
                         \node [right=of sbar] {2};
                         \node [right=of np] {3};
@@ -113,7 +113,7 @@
                     \draw[double] (sbar.south) -- ++(0,-.5ex) -| (vp1.north);
                 \end{scope}
 
-                \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, gray]
+                \begin{scope}[every node/.style={circle, draw, line width=0.1ex, inner sep=1pt}, node distance=0pt, darkgray]
                     \visible<3->{\node[left=of wrb] {1};}
                     \node<4-> at (term1) {\phantom{2}};
                     \node<5->[right=of np] {3};

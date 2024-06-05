@@ -21,7 +21,7 @@
 
         \visible<3-11,13->{
             \alert<16|handout:0>{
-                \node[right=.7cm of rules] (mle) {\rotatebox{90}{\strut\alt<-10>{mle}{training}}};}
+                \node[right=.7cm of rules] (mle) {\rotatebox{90}{\strut\alt<-11>{mle}{training}}};}
             \coordinate (mleboxn) at (treebank.north -| mle);
             \coordinate (mleboxs) at (treebank.south -| mle);
             \node[process, fit=(mle) (mleboxn) (mleboxs), outer sep=0pt] (mlebox) {};
@@ -66,7 +66,7 @@
                     |[draw,gray,circle, visible on=<10->]| 6 \& \strut out      \\
                 };
             \end{scope}
-            \node[gray, inner sep=0pt, above=.4cm of term-1-2.north west, anchor=west] (sentence) {sentence};
+            \node[darkgray, inner sep=0pt, above=.4cm of term-1-2.north west, anchor=west] (sentence) {sentence};
             \node[fit=(term) (sentence), inner sep=0pt] (sentencebox) {};
         }
 
@@ -86,7 +86,7 @@
                     \staglist[1.7cm]{$V\binsym{} \xrightarrow{0.7} [\text{6}][\ldots]$}\\
                 };
             \end{scope}
-            \node[gray, anchor=west, inner sep=0pt] (staglab) at (stag.west|-sentence) {supertags + confidence};
+            \node[darkgray, anchor=west, inner sep=0pt] (staglab) at (stag.west|-sentence) {supertags + confidence};
             \node[boundingbox, fit=(stag) (staglab)] (stagbox) {};
         }
 
@@ -100,7 +100,7 @@
                 \subfile{derivs/01-survey.tex}};
             \node[visible on=<10->, right=of parserbox, scale=0.6, yshift=-4mm] (derivation) {%
                 \subfile{derivs/02-positions.tex}};
-            \node[ gray, inner sep=0pt, anchor=west] (derivlab) at (derivation.north west|-sentence) {best derivation};
+            \node[ darkgray, inner sep=0pt, anchor=west] (derivlab) at (derivation.north west|-sentence) {best derivation};
             \node[fit=(derivlab) (derivation), inner sep=0pt, outer sep=0pt] (derivationbox) {};
         }
 
@@ -114,7 +114,7 @@
             \node[right=of transbox, scale=0.8, yshift=-4mm] (parse) {
                 \subfile{ctrees/01-survey.tex}
             };
-            \node[gray, inner sep=0pt, anchor=west] (parselab) at (parse.north west|-sentence) {constituent tree};
+            \node[darkgray, inner sep=0pt, anchor=west] (parselab) at (parse.north west|-sentence) {constituent tree};
         }
 
         \begin{scope}[->, dashed, gray, >=stealth]

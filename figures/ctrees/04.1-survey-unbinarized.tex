@@ -12,7 +12,7 @@
             % level 3/.style={sibling distance=20em},
             every node/.style={font=\small}
         ]
-        \visible<3->{
+        \visible<4->{
             \matrix (pos) [matrix of nodes, every node/.style={anchor=center, inner sep=0pt, font=\strut, minimum height=12pt}, column sep=6pt, ampersand replacement=\&] {
                 WRB \& DT \& NN \& VBD \& VBN \& RP \\
                 where \& the  \& survey     \& was \& carried     \& out   \\
@@ -38,7 +38,7 @@
                     node[above=0ex of pos-1-3] (term2) {3}}}};
 
         % overwrite bottom layer in the first two overlays
-        \visible<-2>{
+        \visible<-3>{
             \node[fill=white, fit=(pos) (term0), inner sep=0pt, outer sep=0pt] {};
             \matrix (phantompos) [matrix of nodes, every node/.style={anchor=center, inner sep=0pt, font=\strut, minimum height=12pt}, column sep=6pt, ampersand replacement=\&, yshift=12pt] {
                 WRB \& DT \& NN \& VBD \& VBN \& RP \\
