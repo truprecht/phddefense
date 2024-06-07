@@ -33,11 +33,11 @@
         }
         \visible<13->{
             \node[olabel, anchor=north west, align=left, xshift=.7cm] (modellab) at (mle.east |- treebanklab.north) {prediction models\strut};
-            \node[olabel, font=\tiny, anchor=west, yshift=-1.5cm] (stagmodellab) at (modellab.west) {tokens $\to$ blueprints};
+            \node[olabel, font=\scriptsize, anchor=west, yshift=-1.5cm] (stagmodellab) at (modellab.west) {tokens $\to$ blueprints};
             \node[below=.1cm of stagmodellab, fill=black, obox, rounded corners=2pt] (stagmodel) {\textcolor{lightgray}{S}};
         }
         \visible<14->{
-            \node[olabel, font=\tiny, anchor=east, yshift=-.5cm] (posmodellab) at (modellab.east) {tokens $\to$ pos symbols};
+            \node[olabel, font=\scriptsize, anchor=east, yshift=-.5cm, xshift=1.5cm] (posmodellab) at (modellab.east) {tokens $\to$ pos symbols};
             \node[below=.1cm of posmodellab, fill=black, obox, rounded corners=2pt] (posmodel) {\textcolor{lightgray}{P}};
         }
 
